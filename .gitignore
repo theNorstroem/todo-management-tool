@@ -1,0 +1,18 @@
+# Ignore Intellij Idea specific directories
+.idea
+*.iml
+*.iws
+*.ipr
+
+# Ignore Eclipse specific files and directories
+/subprojects/*/bin
+.project
+.classpath
+.settings/
+
+# Other ignored files
+package.json
+npm_version
+/dist/allservices
+/dist/bin
+/dist/env.js
