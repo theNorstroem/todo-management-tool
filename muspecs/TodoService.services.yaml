@@ -1,0 +1,6 @@
+- name: TodosService
+  description: Specification of the ToDos related services.
+  package: todosservice
+  target: todosservice.proto
+  methods:
+    - md: 'Create: POST /todos todos.Item, todos.ItemEntity #Adds a new ToDos item to the ToDos list'
