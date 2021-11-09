@@ -11,13 +11,13 @@ import '@furo/route/src/furo-pages.js';
 
 /**
  * Static imports of the views
- * The lazy imports a below in _FBPReady
  */
 import './create/view-create-todos.js';
 import './view-404.js';
 import './view-5xx.js';
 
 import '@furo/ui5/src/furo-ui5-dialog-display.js';
+
 /**
  * `main-stage`
  *
@@ -27,21 +27,6 @@ import '@furo/ui5/src/furo-ui5-dialog-display.js';
 class MainStage extends FBP(LitElement) {
   _FBPReady() {
     super._FBPReady();
-    /**
-     * Register hook on wire --locationChanged to
-     * Lazy load parts of the page
-     *
-     * DO NOT FORGET TO REGISTER THE LAZY LOADED PARTS IN ~/polymer.json => fragments[...]
-     *
-     */
-    this._FBPAddWireHook('--locationChanged', e => {
-      switch (e.pathSegments[0]) {
-        case 'ROUTE':
-          // import('./views/view-ROUTE.js');
-          break;
-        default:
-      }
-    });
   }
 
   /**
@@ -82,8 +67,8 @@ class MainStage extends FBP(LitElement) {
             –pageHashChanged, Triggered when the page hash changes. Comes with a location object.
       -->
 
-      <furo-pages ƒ-inject-location="--locationChanged" default="createTodos">
-        <view-create-todos name="createTodos"></view-create-todos>
+      <furo-pages ƒ-inject-location="--locationChanged" default="add-todos">
+        <view-create-todos name="add-todos"></view-create-todos>
         <!-- Page NOT FOUND  - fallback page if the requested page is not available -->
         <view-404 name="404"></view-404>
         <!-- Message Page 5xx - Error page for a 5xx error -->
