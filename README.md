@@ -6,7 +6,7 @@
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> chapter 02: git checkout integrate_api_contract
+> chapter 02: git checkout c02_integrate_api_contract
  
 ## New Project Structure
 .
