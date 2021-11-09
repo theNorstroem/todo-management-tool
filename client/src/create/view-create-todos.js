@@ -114,7 +114,6 @@ class ViewCreateTodos extends FBP(LitElement) {
             <furo-ui5-button design="Emphasized" slot="endContent" @-click="--registerRequested"
               >Register
             </furo-ui5-button>
-            <furo-ui5-button slot="endContent" @-click="--homeRequested">Cancel</furo-ui5-button>
           </ui5-bar>
         </furo-vertical-flex>
       </furo-vertical-flex>
@@ -151,6 +150,7 @@ class ViewCreateTodos extends FBP(LitElement) {
       <!-- Display a nice browser tab title and sets a navigation waypoint -->
       <furo-document-title
         prefix="Todo Management Tool"
+        title=" : Add new item"
         ƒ-set-waypoint="--pageActivated, --pageHashChanged"
       ></furo-document-title>
     `;

@@ -38,3 +38,19 @@ Commands: https://furo.pro/docs/commands/
 ## Local Web Application Development
 All the web application source is located in the subfolder `client`.
 
+### Install Dependencies
+```
+npm i
+```
+
+### Starting Web Application in mock mode
+```
+npm run start:mock
+```
+
+### Starting Web Application with backend proxy (backend for frontend)
+```
+npm run start:bff
+```
+
+
