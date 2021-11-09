@@ -17,6 +17,27 @@
   ],
   "paths": {
     "/todos": {
+      "get": {
+        "summary": "The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.",
+        "operationId": "TodosService_ListTodos",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/todosItemEntity"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TodosService"
+        ]
+      },
       "post": {
         "summary": "Adds a new ToDos item to the ToDos list",
         "operationId": "TodosService_CreateTodo",
@@ -35,6 +56,77 @@
           }
         },
         "parameters": [
+          {
+            "name": "body",
+            "description": "Body with todos.Item",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/todosItem"
+            }
+          }
+        ],
+        "tags": [
+          "TodosService"
+        ]
+      }
+    },
+    "/todos/{tdi}": {
+      "get": {
+        "summary": "The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item",
+        "operationId": "TodosService_GetTodo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/todosItemEntity"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tdi",
+            "description": "The query param **tdi** stands for the item id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TodosService"
+        ]
+      },
+      "patch": {
+        "summary": "The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item",
+        "operationId": "TodosService_UpdateTodo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/todosItemEntity"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tdi",
+            "description": "The query param **tdi** stands for the item id.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "body",
             "description": "Body with todos.Item",

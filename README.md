@@ -6,7 +6,7 @@
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> chapter 03: git checkout c03_api_review
+> chapter 04: git checkout c04_api_bugfixes
  
 ## New Project Structure
 .

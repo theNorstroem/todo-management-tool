@@ -1,0 +1,5 @@
+- type: 'todos.ItemCollection #Collectioncontainer which holds items of type todos.ItemEntity'
+  fields:
+    meta: 'furo.Meta:3 #Meta for the response'
+    links: '[] furo.Link:2 #the Hateoas links'
+    entities: '[] todos.ItemEntity:1 #the data contains a todos.Item'

@@ -23,6 +23,19 @@ message Item {
     google.type.Date due_date = 3;
 }
 
+// Collectioncontainer which holds items of type todos.ItemEntity
+message ItemCollection {  
+
+    // Meta for the response
+    furo.Meta meta = 3;
+
+    // the Hateoas links
+    repeated furo.Link links = 2;
+
+    // the data contains a todos.Item
+    repeated todos.ItemEntity entities = 1;
+}
+
 // Entitycontainer which holds a todos.Item
 message ItemEntity {  
 
