@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <meta name="Description" content="Creating an enterprise-flavoured ToDo application from scratch with the Furo Web Stack">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+  <base id="base" href="/">
+  <title></title>
+
+  <script>
+    /**
+     * If you need to work with sub directories, set the regex to the path of your app
+     * The example accepts /any/folder/dist with dist as the deepest folder where your app lies.
+     *
+     * Do not forget to add  **url-space-regex="^${window.APPROOT}"** in your furo-location component
+     */
+    const matches = window.location.pathname.match(/^(.*)ToDo/);
+    if (matches !== null) {
+      [window.APPROOT] = matches;
+      const b = document.getElementById("base");
+      b.setAttribute("href", `${window.APPROOT}/`);
+    } else {
+      window.APPROOT = "";
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.getRegistration().then((registration) => {
+          if (registration) {
+            registration.addEventListener('updatefound', () => {
+
+              // A wild service worker has appeared in reg.installing!
+              const newWorker = registration.installing;
+              // "installing" - the install event has fired, but not yet complete
+              // "installed"  - install complete
+              // "activating" - the activate event has fired, but not yet complete
+              // "activated"  - fully active
+              // "redundant"  - discarded. Either failed install, or it's been
+              //                replaced by a newer version
+
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed') {
+                  const obj = {};
+                  obj.labelText = "New update installed.";
+                obj._action = () => {
+                  // reload page
+                    registration.unregister();
+                  window.location.reload();
+
+                };
+                obj.icon = "clear";
+                obj._dismiss = () => {
+                  console.log("closed without reload...")
+                };
+                  obj.actionButtonText = "restart";
+                  const customEvent = new Event("open-furo-snackbar-requested", {composed: true, bubbles: true});
+                customEvent.detail = obj;
+                this.dispatchEvent(customEvent);
+                }
+              });
+
+            });
+          }
+        });
+      });
+
+    // Load and register pre-caching Service Worker
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+
+  </script>
+
+
+  <!-- Load your application shell -->
+  <script type="module" src="src/app-shell.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    html {
+      font-size: 16px;
+    }
+  </style>
+
+</head>
+<body>
+<app-shell></app-shell>
+<noscript>
+  Please enable JavaScript to view this website.
+</noscript>
+
+
+</body>
+</html>

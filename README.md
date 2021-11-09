@@ -6,9 +6,19 @@
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> Start with the first chapter: git checkout todos_api_contract
+> chapter 02: git checkout integrate_api_contract
+ 
+## New Project Structure
+.
+|-- LICENSE
+|-- README.md
+|-- api
+|-- client
+`-- server
 
-## Local Development
+Peter moved all the content of his api contract to the new folder `api`.
+
+## Local API Development
 
 ### Use local container build
 [Furo build environment docker container](https://github.com/theNorstroem/furoBEC)
@@ -22,3 +32,9 @@ docker pull thenorstroem/furo-bec:v1.28.5
 Example Usage: docker run -it --rm -v $(pwd):$pwd/specs thenorstroem/furo-bec:v1.28.5
 
 Commands: https://furo.pro/docs/commands/
+
+**start the furo build environment container from /api**
+
+## Local Web Application Development
+All the web application source is located in the subfolder `client`.
+

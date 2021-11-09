@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "entities": [
+        {
+          "data": {
+            "id": "01FM0109NRRFM5VKEK6VBJ19AZ"
+          },
+          "links": [
+            {
+              "rel": "self",
+              "method": "GET",
+              "href": "/api/todos/01FM0109NRRFM5VKEK6VBJ19AZ",
+              "service": "TodosService"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "rel": "self",
+          "method": "GET",
+          "href": "/api/todos",
+          "service": "TodosService"
+        },
+        {
+          "rel": "list",
+          "method": "GET",
+          "href": "/api/todos",
+          "service": "TodosService"
+        }
+      ]
+    }
+  ]
+}

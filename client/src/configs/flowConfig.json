@@ -1,0 +1,6 @@
+[
+  ["*", "unauthorized", "EXTERNAL_LINK: auth.html"],
+  ["*", "history-back",  "HISTORY-BACK"],
+  ["*", "deep-linked-url", "EXTERNAL_LINK_BLANK:", "*"],
+  ["*", "general-error-occurred", "message-page-error", "*"]
+]

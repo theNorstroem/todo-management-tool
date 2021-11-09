@@ -1,0 +1,4 @@
+# Other ignored files
+/dist/allservices
+/dist/bin
+/dist/env.js
