@@ -6,7 +6,7 @@
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> Start with the first chapter: git checkout todos_api_contract
+> Start with the first chapter: git checkout c01_todos_api_contract
 
 ## Local Development
 
