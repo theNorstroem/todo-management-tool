@@ -41,23 +41,23 @@ func (s serviceServer) CreateTodo(ctx context.Context, request *proto.CreateTodo
 }
 
 func (s serviceServer) GetTodo(ctx context.Context, request *proto.GetTodoRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError()
+	return nil, newUnimplementedError("Sorry. The GetTodos service will be soon available")
 }
 
 func (s serviceServer) ListTodos(ctx context.Context, request *proto.ListTodosRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError()
+	return nil, newUnimplementedError("Sorry. The ListTodos service will be soon available")
 }
 
 func (s serviceServer) UpdateTodo(ctx context.Context, request *proto.UpdateTodoRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError()
+	return nil, newUnimplementedError("Sorry. The UpdateTodos service will be soon available")
 }
 
 // builds a universal unimplemented google.rpc.Status with LocalizedMessage as a detail
-func newUnimplementedError() error {
+func newUnimplementedError(msg string) error {
 	st := status.New(codes.Unimplemented, "This service endpoint is not yet available")
 	v := &errdetails.LocalizedMessage{
 		Locale:  "en-GB",
-		Message: "Sorry. The ListTodos service will be soon available",
+		Message: msg,
 	}
 	st, err := st.WithDetails(v)
 	if err != nil {
