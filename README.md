@@ -1,12 +1,13 @@
 # Creating an enterprise-flavoured ToDo application from scratch with the Furo Web Stack
 
+- _eBook_: coming soon
 - _Repository_: https://github.com/theNorstroem/todo-management-tool
 - _Furo Web Stack_: https://furo.pro/
 
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> chapter 05: git checkout c05_grpc_backend
+> chapter 01: git checkout c01_todos_api_contract
  
 ## New Project Structure
 .
