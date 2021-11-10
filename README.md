@@ -6,7 +6,7 @@
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> chapter 04: git checkout c04_api_bugfixes
+> chapter 05: git checkout c05_grpc_backend
  
 ## New Project Structure
 .
@@ -52,5 +52,8 @@ npm run start:mock
 ```
 npm run start:bff
 ```
+
+## Local gRPC Server Development
+All the gRPC server code is located in the subfolder `/api/server`.
 
 

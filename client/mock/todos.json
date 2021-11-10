@@ -4,7 +4,13 @@
       "entities": [
         {
           "data": {
-            "id": "01FM0109NRRFM5VKEK6VBJ19AZ"
+            "id": "01FM0109NRRFM5VKEK6VBJ19AZ",
+            "description": "Dummy Todo task",
+            "due_date": {
+              "day": 1,
+              "month": 11,
+              "year": 2021
+            }
           },
           "links": [
             {
