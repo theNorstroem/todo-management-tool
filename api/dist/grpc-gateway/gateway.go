@@ -8,7 +8,7 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
 	"github.com/rs/zerolog"
-	"github.com/theNorstroem/todo-management-tool/dist/grpc-gateway/autoregister"
+	"github.com/theNorstroem/todo-management-tool/api/dist/grpc-gateway/autoregister"
 	_ "google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"

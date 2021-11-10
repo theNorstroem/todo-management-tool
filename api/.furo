@@ -1,5 +1,5 @@
 furo: "1.28.5"
-module: "github.com/theNorstroem/todo-management-tool"
+module: "github.com/theNorstroem/todo-management-tool/api"
 version: "0.0.1"
 specDir: "./specs"
 specFormat: "yaml" #set to yaml or json
@@ -13,8 +13,8 @@ muSpec:
   services:
     - "./muspecs/**/*services.yaml"
     - "./muspecs/*services.yaml"
-  goPackageBase: "github.com/theNorstroem/todo-management-tool/dist/pb/" #this is used to prefix the go package option (with trailing slash) e.g. com.github/xxx/xxx-spec/dist/pb/
-  javaPackagePrefix: "com.github.thenorstroem.todo.management.bff." #com.github.xxx.bff. (with trailing dot)
+  goPackageBase: "github.com/theNorstroem/todo-management-tool/api/dist/pb/" #this is used to prefix the go package option (with trailing slash) e.g. com.github/xxx/xxx-spec/dist/pb/
+  javaPackagePrefix: "com.github.thenorstroem.todo.management.api." #com.github.xxx.bff. (with trailing dot)
   dir: "muspecs"
 commands: #camelCase is not allowed, command scripts can only be executed from a flow
   gen_protoc_commands: "./scripts/protoc/protoc.sh"
@@ -47,10 +47,10 @@ build:
     targetFile: "dist/allservices/all-services.proto"
     package: "allservices"
     options:
-      go_package: "github.com/theNorstroem/todo-management-tool/dist/pb/allservices;allservicespb"
+      go_package: "github.com/theNorstroem/todo-management-tool/api/dist/pb/allservices;allservicespb"
       java_multiple_files: true
       java_outer_classname: "allServices"
-      java_package: "com.github.thenorstroem.todo.management.allservices"
+      java_package: "com.github.thenorstroem.todo.management.api.allservices"
 dist:
   files: # enter a list of files and directories which should be installed by other projects
     - dist/protos

@@ -8,10 +8,10 @@ __proto:
     imports:
         - todos/todos.proto
     options:
-        go_package: github.com/theNorstroem/todo-management-tool/dist/pb/todosservice;todosservicepb
+        go_package: github.com/theNorstroem/todo-management-tool/api/dist/pb/todosservice;todosservicepb
         java_multiple_files: "true"
         java_outer_classname: ReqmsgsProto
-        java_package: com.github.thenorstroem.todo.management.bff.todosservice
+        java_package: com.github.thenorstroem.todo.management.api.todosservice
 fields:
     body:
         type: .todos.Item

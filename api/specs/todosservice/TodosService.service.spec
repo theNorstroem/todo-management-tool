@@ -8,13 +8,13 @@ __proto:
     imports:
         - google/api/annotations.proto
         - todosservice/reqmsgs.proto
-        - todos/todos.proto
         - google/protobuf/empty.proto
+        - todos/todos.proto
     options:
-        go_package: github.com/theNorstroem/todo-management-tool/dist/pb/todosservice;todosservicepb
+        go_package: github.com/theNorstroem/todo-management-tool/api/dist/pb/todosservice;todosservicepb
         java_multiple_files: "true"
         java_outer_classname: TodosserviceProto
-        java_package: com.github.thenorstroem.todo.management.bff.todosservice
+        java_package: com.github.thenorstroem.todo.management.api.todosservice
 services:
     Create:
         description: Adds a new ToDos item to the ToDos list

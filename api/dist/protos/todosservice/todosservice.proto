@@ -2,10 +2,10 @@
 
 syntax = "proto3";
 package todosservice;
-option go_package = "github.com/theNorstroem/todo-management-tool/dist/pb/todosservice;todosservicepb";
+option go_package = "github.com/theNorstroem/todo-management-tool/api/dist/pb/todosservice;todosservicepb";
 option java_multiple_files = true;
 option java_outer_classname = "TodosserviceProto";
-option java_package = "com.github.thenorstroem.todo.management.bff.todosservice";
+option java_package = "com.github.thenorstroem.todo.management.api.todosservice";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";

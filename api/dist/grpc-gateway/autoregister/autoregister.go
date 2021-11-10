@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	//todosservice.TodosService
-	todosservicepb "github.com/theNorstroem/todo-management-tool/dist/pb/todosservice"
+	todosservicepb "github.com/theNorstroem/todo-management-tool/api/dist/pb/todosservice"
 
 	"google.golang.org/grpc"
 )

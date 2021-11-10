@@ -4,7 +4,7 @@ import (
 	"flag"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
-	grpc_gateway "github.com/theNorstroem/todo-management-tool/dist/grpc-gateway"
+	grpc_gateway "github.com/theNorstroem/todo-management-tool/api/dist/grpc-gateway"
 	"os"
 )
 

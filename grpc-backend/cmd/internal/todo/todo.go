@@ -3,7 +3,7 @@ package todosservicepb
 import (
 	"context"
 	"fmt"
-	todos "github.com/theNorstroem/todo-management-tool/dist/pb/todos"
+	todos "github.com/theNorstroem/todo-management-tool/dist/pb/todo"
 	proto "github.com/theNorstroem/todo-management-tool/dist/pb/todosservice"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/genproto/googleapis/type/date"

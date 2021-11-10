@@ -1,4 +1,4 @@
-module github.com/theNorstroem/todo-management-tool
+module github.com/theNorstroem/todo-management-tool/api
 
 go 1.17
 

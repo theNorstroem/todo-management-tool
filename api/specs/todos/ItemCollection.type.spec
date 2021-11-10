@@ -8,10 +8,10 @@ __proto:
     imports:
         - furo/furo.proto
     options:
-        go_package: github.com/theNorstroem/todo-management-tool/dist/pb/todos;todospb
+        go_package: github.com/theNorstroem/todo-management-tool/api/dist/pb/todos;todospb
         java_multiple_files: "true"
         java_outer_classname: TodosProto
-        java_package: com.github.thenorstroem.todo.management.bff.todos
+        java_package: com.github.thenorstroem.todo.management.api.todos
 fields:
     meta:
         type: furo.Meta

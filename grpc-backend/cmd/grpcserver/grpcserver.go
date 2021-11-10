@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	todo "github.com/theNorstroem/todo-management-tool/server/cmd/internal/todo"
+	todo "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/todo"
 	"google.golang.org/grpc"
 	"log"
 	"net"

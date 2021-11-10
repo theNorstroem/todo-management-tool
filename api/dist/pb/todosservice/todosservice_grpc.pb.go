@@ -4,7 +4,7 @@ package todosservicepb
 
 import (
 	context "context"
-	todos "github.com/theNorstroem/todo-management-tool/dist/pb/todos"
+	todos "github.com/theNorstroem/todo-management-tool/api/dist/pb/todos"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
