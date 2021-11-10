@@ -14,7 +14,7 @@ We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a
 |-- README.md
 |-- api
 |-- client
-`-- server
+`-- grpc-backend
 
 Peter moved all the content of his api contract to the new folder `api`.
 
@@ -54,6 +54,12 @@ npm run start:bff
 ```
 
 ## Local gRPC Server Development
-All the gRPC server code is located in the subfolder `/api/server`.
+All the gRPC server code is located in the subfolder `/grpc-backend`.
+
+```
+cd grpc-backend
+go install ./cmd/...
+tmt-grpc
+```
 
 
