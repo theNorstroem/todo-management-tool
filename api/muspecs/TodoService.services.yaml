@@ -1,0 +1,13 @@
+- name: TodosService
+  description: Specification of the ToDos related services.
+  package: todosservice
+  target: todosservice.proto
+  methods:
+    - md: 'Create: POST /todos todos.Item, todos.ItemEntity #Adds a new ToDos item to the ToDos list'
+    - md: 'List: GET /todos google.protobuf.Empty, todos.ItemEntity #The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.'
+    - md: 'Get: GET /todos/{tdi} google.protobuf.Empty, todos.ItemEntity #The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item'
+      qp:
+        tdi: 'string #The query param **tdi** stands for the item id.'
+    - md: 'Update: PATCH /todos/{tdi} todos.Item, todos.ItemEntity #The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item'
+      qp:
+        tdi: 'string #The query param **tdi** stands for the item id.'

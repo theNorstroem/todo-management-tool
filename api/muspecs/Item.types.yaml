@@ -1,0 +1,5 @@
+- type: 'todos.Item  #Simple ToDos Item Type'
+  fields:
+    id: 'string:1 #Identity of the item'
+    description: 'string:2 #Description of the task'
+    due_date: 'google.type.Date:3 #Due date of the task'

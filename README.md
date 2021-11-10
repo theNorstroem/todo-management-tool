@@ -6,9 +6,19 @@
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> Start with the first chapter: git checkout todos_api_contract
+> chapter 05: git checkout c05_grpc_backend
+ 
+## New Project Structure
+.
+|-- LICENSE
+|-- README.md
+|-- api
+|-- client
+`-- grpc-backend
 
-## Local Development
+Peter moved all the content of his api contract to the new folder `api`.
+
+## Local API Development
 
 ### Use local container build
 [Furo build environment docker container](https://github.com/theNorstroem/furoBEC)
@@ -22,3 +32,34 @@ docker pull thenorstroem/furo-bec:v1.28.5
 Example Usage: docker run -it --rm -v $(pwd):$pwd/specs thenorstroem/furo-bec:v1.28.5
 
 Commands: https://furo.pro/docs/commands/
+
+**start the furo build environment container from /api**
+
+## Local Web Application Development
+All the web application source is located in the subfolder `client`.
+
+### Install Dependencies
+```
+npm i
+```
+
+### Starting Web Application in mock mode
+```
+npm run start:mock
+```
+
+### Starting Web Application with backend proxy (backend for frontend)
+```
+npm run start:bff
+```
+
+## Local gRPC Server Development
+All the gRPC server code is located in the subfolder `/grpc-backend`.
+
+```
+cd grpc-backend
+go install ./cmd/...
+tmt-grpc
+```
+
+

@@ -1,0 +1,64 @@
+furo: "1.28.5"
+module: "github.com/theNorstroem/todo-management-tool/api"
+version: "0.0.1"
+specDir: "./specs"
+specFormat: "yaml" #set to yaml or json
+dependencies:
+  - "https://github.com/theNorstroem/furoBaseSpecs.git v1.27.1" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
+dependenciesDir: dependencies
+muSpec:
+  types:
+    - "./muspecs/**/*types.yaml"
+    - "./muspecs/*types.yaml"
+  services:
+    - "./muspecs/**/*services.yaml"
+    - "./muspecs/*services.yaml"
+  goPackageBase: "github.com/theNorstroem/todo-management-tool/api/dist/pb/" #this is used to prefix the go package option (with trailing slash) e.g. com.github/xxx/xxx-spec/dist/pb/
+  javaPackagePrefix: "com.github.thenorstroem.todo.management.api." #com.github.xxx.bff. (with trailing dot)
+  dir: "muspecs"
+commands: #camelCase is not allowed, command scripts can only be executed from a flow
+  gen_protoc_commands: "./scripts/protoc/protoc.sh"
+  gen_transcoder: "./scripts/grpcgateway/gateway.sh"
+  buf_generate: "./scripts/buf_generate.sh"
+  buf_braking: "./scripts/buf_breaking.sh"
+  gen_open_api : "./scripts/genOpenApi.sh" # generate swagger json from bundled services
+  clean_dist: "./scripts/cleanUpDist.sh" # removes generate, so you can make a clean build
+flows:
+  default: # muSpec used as source of truth
+    - deprecated
+    - muSpec2Spec
+    - checkImports
+    - clean_dist
+    - genServiceProtos
+    - genMessageProtos
+    - buf_generate
+    - gen_transcoder
+    - genEsModule
+  build:
+    - genBundledServiceProto
+    - gen_open_api
+    - genEsModule
+build:
+  proto:
+    targetDir: "dist/protos/" #Hint: add this to your proto include path
+  esModule:
+    targetFile: "dist/env.js"
+  bundledservice:
+    targetFile: "dist/allservices/all-services.proto"
+    package: "allservices"
+    options:
+      go_package: "github.com/theNorstroem/todo-management-tool/api/dist/pb/allservices;allservicespb"
+      java_multiple_files: true
+      java_outer_classname: "allServices"
+      java_package: "com.github.thenorstroem.todo.management.api.allservices"
+dist:
+  files: # enter a list of files and directories which should be installed by other projects
+    - dist/protos
+    - dist/pb
+    - specs
+    - README.md
+    - .furo
+extensions:
+  gen_transcoder:
+    additional_imports:
+      - google.golang.org/genproto/googleapis/rpc/errdetails
