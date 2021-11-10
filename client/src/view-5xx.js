@@ -1,7 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { Theme } from '@furo/framework/src/theme.js';
 import { FBP } from '@furo/fbp/src/fbp.js';
-import { i18n } from '@furo/framework/src/i18n.js';
 
 import '@furo/route/src/furo-app-flow.js';
 import '@furo/layout/src/furo-vertical-flex.js';
@@ -60,8 +59,7 @@ class View5xx extends FBP(LitElement) {
     return html`
       <furo-vertical-flex>
         <ui5-shellbar
-          primary-title="${i18n.t('web.core.5xx.shellbar.heading')}"
-          secondary-title="${i18n.t('web.core.5xx.shellbar.subheading')}"
+          primary-title="ToDo Management Tool"
         >
           <ui5-button icon="nav-back" slot="startButton" @-click="--historyBack"></ui5-button>
         </ui5-shellbar>

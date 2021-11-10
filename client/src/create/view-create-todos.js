@@ -94,8 +94,8 @@ class ViewCreateTodos extends FBP(LitElement) {
               <furo-ui5-message-strip-display full></furo-ui5-message-strip-display>
               <furo-ui5-message-strip
                 message="Sorry, the services for the Todo Management WebApp are currently not available. We are working on it."
-                ƒ-show-error="--notImplemented, --badGateway"
-                ƒ-show-grpc-localized-message="--grpcError"
+                ƒ-show-error="--badGateway, --fatalError"
+                ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
               ></furo-ui5-message-strip>
 
               <!-- The ToDos register form -->
@@ -143,8 +143,9 @@ class ViewCreateTodos extends FBP(LitElement) {
         ƒ-bind-request-data="--daoToDoItem(*.data)"
         @-response="--responseOK"
         @-response-error-400="--grpcError"
-        @-response-error-501="--notImplemented(*)"
+        @-response-error-501="--notImplemented"
         @-response-error-502="--badGateway(*)"
+        @-fatal-error="--fatalError"
       ></furo-entity-agent>
 
       <!-- Display a nice browser tab title and sets a navigation waypoint -->
