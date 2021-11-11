@@ -2,5 +2,7 @@
   ["*", "unauthorized", "EXTERNAL_LINK: auth.html"],
   ["*", "history-back",  "HISTORY-BACK"],
   ["*", "deep-linked-url", "EXTERNAL_LINK_BLANK:", "*"],
-  ["*", "general-error-occurred", "message-page-error", "*"]
+  ["*", "general-error-occurred", "message-page-error", "*"],
+  ["*", "flow-todo-list-requested", "list-todos"],
+  ["*", "todo-item-selected", "todo-detail", "*"]
 ]

@@ -7,3 +7,5 @@
 import '@ui5/webcomponents-icons/dist/home.js';
 import '@ui5/webcomponents-icons/dist/nav-back.js';
 import '@ui5/webcomponents-icons/dist/create.js';
+import '@ui5/webcomponents-icons/dist/task.js';
+import '@ui5/webcomponents-icons/dist/search.js';

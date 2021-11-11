@@ -3,6 +3,9 @@ module.exports = {
   basePath: '',
   path: {
     '/todos': 1,
+    '/todos/01FM0109NRRFM5VKEK6VBJ19AZ': 1,
+    '/todos/02EM0109NRRFM5VKEK6VBJ19AZ': 1,
+    '/todos/{tdi}': 1,
   },
   /**
    * Proxy [Object]: {path: Object} Set the proxy rule, keys are the path for matching, the value should a object to set the detail matching rules.

@@ -58,9 +58,7 @@ class View5xx extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-vertical-flex>
-        <ui5-shellbar
-          primary-title="ToDo Management Tool"
-        >
+        <ui5-shellbar primary-title="ToDo Management Tool">
           <ui5-button icon="nav-back" slot="startButton" @-click="--historyBack"></ui5-button>
         </ui5-shellbar>
 

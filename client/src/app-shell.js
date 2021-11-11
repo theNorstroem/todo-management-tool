@@ -11,7 +11,7 @@ import('./configs/ui5Init.js').then(async () => {
 });
 
 /**
- * `main-app`
+ * This is the application shell.
  *
  * @customElement
  * @appliesMixin FBP

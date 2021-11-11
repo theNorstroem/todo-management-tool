@@ -13,13 +13,16 @@ import '@furo/route/src/furo-pages.js';
  * Static imports of the views
  */
 import './create/view-create-todos.js';
+import './listing/view-listing-todos.js';
+import './detail/view-detail-todos.js';
 import './view-404.js';
 import './view-5xx.js';
 
 import '@furo/ui5/src/furo-ui5-dialog-display.js';
 
 /**
- * `main-stage`
+ * Entry point of the web application.
+ * All the main views are registered here.
  *
  * @customElement
  * @appliesMixin FBP
@@ -69,6 +72,8 @@ class MainStage extends FBP(LitElement) {
 
       <furo-pages ƒ-inject-location="--locationChanged" default="add-todos">
         <view-create-todos name="add-todos"></view-create-todos>
+        <view-listing-todos name="list-todos"></view-listing-todos>
+        <view-detail-todos name="todo-detail"></view-detail-todos>
         <!-- Page NOT FOUND  - fallback page if the requested page is not available -->
         <view-404 name="404"></view-404>
         <!-- Message Page 5xx - Error page for a 5xx error -->
