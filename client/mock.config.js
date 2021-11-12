@@ -5,6 +5,7 @@ module.exports = {
     '/todos': 1,
     '/todos/01FM0109NRRFM5VKEK6VBJ19AZ': 1,
     '/todos/02EM0109NRRFM5VKEK6VBJ19AZ': 1,
+    '/todos/03XM0109NRRFM5VKEK6VBJ19AZ': 1,
     '/todos/{tdi}': 1,
   },
   /**

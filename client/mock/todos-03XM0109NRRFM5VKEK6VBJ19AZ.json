@@ -2,10 +2,10 @@
   "cases": [
     {
       "data": {
-        "id": "02EM0109NRRFM5VKEK6VBJ19AZ",
-        "description": "Review create task",
+        "id": "03XM0109NRRFM5VKEK6VBJ19AZ",
+        "description": "Sync with Peter",
         "due_date": {
-          "day": 16,
+          "day": 18,
           "month": 11,
           "year": 2021
         },
@@ -13,13 +13,13 @@
           {
             "rel": "self",
             "method": "GET",
-            "href": "/api/todos/02EM0109NRRFM5VKEK6VBJ19AZ",
+            "href": "/api/todos/03XM0109NRRFM5VKEK6VBJ19AZ",
             "service": "TodosService"
           },
           {
             "rel": "update",
             "method": "PATCH",
-            "href": "/api/todos/02EM0109NRRFM5VKEK6VBJ19AZ",
+            "href": "/api/todos/03XM0109NRRFM5VKEK6VBJ19AZ",
             "service": "TodosService"
           }
         ]

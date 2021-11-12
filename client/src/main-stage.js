@@ -15,6 +15,7 @@ import '@furo/route/src/furo-pages.js';
 import './create/view-create-todos.js';
 import './listing/view-listing-todos.js';
 import './detail/view-detail-todos.js';
+import './update/view-update-todos.js';
 import './view-404.js';
 import './view-5xx.js';
 
@@ -70,10 +71,11 @@ class MainStage extends FBP(LitElement) {
             –pageHashChanged, Triggered when the page hash changes. Comes with a location object.
       -->
 
-      <furo-pages ƒ-inject-location="--locationChanged" default="add-todos">
+      <furo-pages ƒ-inject-location="--locationChanged" default="list-todos">
         <view-create-todos name="add-todos"></view-create-todos>
         <view-listing-todos name="list-todos"></view-listing-todos>
         <view-detail-todos name="todo-detail"></view-detail-todos>
+        <view-update-todos name="update-todo"></view-update-todos>
         <!-- Page NOT FOUND  - fallback page if the requested page is not available -->
         <view-404 name="404"></view-404>
         <!-- Message Page 5xx - Error page for a 5xx error -->

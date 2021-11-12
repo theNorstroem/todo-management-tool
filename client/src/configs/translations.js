@@ -4,6 +4,7 @@ export const Translations = {
       item: {
         description: { label: 'Description', placeholder: 'Insert your item description' },
         duedate: { label: 'Due Date', placeholder: 'set due date' },
+        id: { label: 'Identification' },
       },
     },
     web: {

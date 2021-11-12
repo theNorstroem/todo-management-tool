@@ -4,5 +4,7 @@
   ["*", "deep-linked-url", "EXTERNAL_LINK_BLANK:", "*"],
   ["*", "general-error-occurred", "message-page-error", "*"],
   ["*", "flow-todo-list-requested", "list-todos"],
+  ["*", "flow-update-todo-requested", "update-todo", "*"],
+  ["*", "flow-create-todo-requested", "add-todos", "*"],
   ["*", "todo-item-selected", "todo-detail", "*"]
 ]

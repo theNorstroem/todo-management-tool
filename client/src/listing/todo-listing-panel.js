@@ -102,11 +102,14 @@ class TodoListingPanel extends FBP(LitElement) {
             @-tablerow-selected="^^record-selected"
           ></todo-search-resultset>
 
+          <!-- shows illustrated message NoResultsFound if response is empty -->
           <ui5-illustrated-message
             name="NoSearchResults"
             title-text="No results found"
             subtitle-text="Try changing your search criteria."
-          ></ui5-illustrated-message>
+          >
+            <furo-ui5-button @-click="--registerToDoRequested">Register new item</furo-ui5-button>
+          </ui5-illustrated-message>
 
         </furo-pages>
 
@@ -120,6 +123,9 @@ class TodoListingPanel extends FBP(LitElement) {
           ƒ-inject="--searchHTS"
         ></furo-ui5-pagination-bar>
       </furo-vertical-flex>
+
+      <!-- Application routing -->
+      <furo-app-flow event="flow-create-todo-requested" ƒ-emit="--registerToDoRequested"></furo-app-flow>
     `;
   }
 }

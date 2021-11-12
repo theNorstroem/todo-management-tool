@@ -15,12 +15,6 @@
             "method": "GET",
             "href": "/api/todos/01FM0109NRRFM5VKEK6VBJ19AZ",
             "service": "TodosService"
-          },
-          {
-            "rel": "update",
-            "method": "PATCH",
-            "href": "/api/todos/01FM0109NRRFM5VKEK6VBJ19AZ",
-            "service": "TodosService"
           }
         ]
       }

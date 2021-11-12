@@ -120,13 +120,13 @@ class ViewCreateTodos extends FBP(LitElement) {
       </furo-vertical-flex>
 
       <!-- A message toast is a small, non-disruptive popup for success messages that disappears automatically after a few seconds.-->
-      <ui5-toast ƒ-show="--responseOK">New ToDo item saved.</ui5-toast>
+      <ui5-toast ƒ-show="--saveOK">New ToDo item saved.</ui5-toast>
 
       <!-- Data model of type todos.Item -->
       <furo-data-object
         type="todos.ItemEntity"
         @-object-ready="--daoToDoItem"
-        ƒ-init="--pageActivated"
+        ƒ-init="--pageActivated, --saveOK"
       ></furo-data-object>
 
       <!-- resolves hateoas links -->
@@ -140,9 +140,9 @@ class ViewCreateTodos extends FBP(LitElement) {
       <furo-entity-agent
         service="TodosService"
         ƒ-hts-in="--htsOut"
-        ƒ-save="--registerRequested"
+        ƒ-create="--registerRequested"
         ƒ-bind-request-data="--daoToDoItem(*.data)"
-        @-response="--responseOK"
+        @-response="--saveOK"
         @-response-error-400="--grpcError"
         @-response-error-501="--notImplemented"
         @-response-error-502="--badGateway(*)"
