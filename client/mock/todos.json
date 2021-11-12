@@ -20,12 +20,115 @@
               "service": "TodosService"
             }
           ]
+        },
+        {
+          "data": {
+            "id": "02EM0109NRRFM5VKEK6VBJ19AZ",
+            "description": "Review create task",
+            "due_date": {
+              "day": 16,
+              "month": 11,
+              "year": 2021
+            }
+          },
+          "links": [
+            {
+              "rel": "self",
+              "method": "GET",
+              "href": "/api/todos/02EM0109NRRFM5VKEK6VBJ19AZ",
+              "service": "TodosService"
+            }
+          ]
+        },
+        {
+          "data": {
+            "id": "03XM0109NRRFM5VKEK6VBJ19AZ",
+            "description": "Sync with Peter",
+            "due_date": {
+              "day": 18,
+              "month": 11,
+              "year": 2021
+            }
+          },
+          "links": [
+            {
+              "rel": "self",
+              "method": "GET",
+              "href": "/api/todos/03XM0109NRRFM5VKEK6VBJ19AZ",
+              "service": "TodosService"
+            }
+          ]
+        }
+      ],
+      "entities": [
+        {
+          "data": {
+            "id": "01FM0109NRRFM5VKEK6VBJ19AZ",
+            "description": "Dummy Todo task",
+            "due_date": {
+              "day": 1,
+              "month": 11,
+              "year": 2021
+            }
+          },
+          "links": [
+            {
+              "rel": "self",
+              "method": "GET",
+              "href": "/api/todos/01FM0109NRRFM5VKEK6VBJ19AZ",
+              "service": "TodosService"
+            }
+          ]
+        },
+        {
+          "data": {
+            "id": "02EM0109NRRFM5VKEK6VBJ19AZ",
+            "description": "Review create task",
+            "due_date": {
+              "day": 16,
+              "month": 11,
+              "year": 2021
+            }
+          },
+          "links": [
+            {
+              "rel": "self",
+              "method": "GET",
+              "href": "/api/todos/02EM0109NRRFM5VKEK6VBJ19AZ",
+              "service": "TodosService"
+            }
+          ]
+        },
+        {
+          "data": {
+            "id": "03XM0109NRRFM5VKEK6VBJ19AZ",
+            "description": "Sync with Peter",
+            "due_date": {
+              "day": 18,
+              "month": 11,
+              "year": 2021
+            }
+          },
+          "links": [
+            {
+              "rel": "self",
+              "method": "GET",
+              "href": "/api/todos/03XM0109NRRFM5VKEK6VBJ19AZ",
+              "service": "TodosService"
+            }
+          ]
         }
       ],
       "links": [
         {
           "rel": "self",
           "method": "GET",
+          "href": "/api/todos",
+          "service": "TodosService"
+        },
+        {
+          "rel": "create",
+          "method": "POST",
           "href": "/api/todos",
           "service": "TodosService"
         },

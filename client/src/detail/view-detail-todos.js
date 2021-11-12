@@ -8,33 +8,33 @@ import '@furo/route/src/furo-location-updater.js';
 import '@furo/route/src/furo-document-title.js';
 
 import '@furo/data/src/furo-deep-link.js';
+import '@furo/data/src/furo-reverse-deep-link.js';
 import '@furo/data/src/furo-entity-agent.js';
 import '@furo/data/src/furo-data-object.js';
 
 import '@furo/form/src/furo-form-layouter.js';
 
 import '@furo/ui5/src/furo-ui5-header-panel.js';
-import '@furo/ui5/src/furo-ui5-data-textarea-input-labeled.js';
 import '@furo/ui5/src/furo-ui5-message-strip.js';
 import '@furo/ui5/src/furo-ui5-message-strip-display.js';
+import '@furo/ui5/src/furo-ui5-card.js';
+import '@furo/ui5/src/furo-ui5-data-display.js';
 import '@furo/ui5/src/furo-ui5-button.js';
 
 import '@ui5/webcomponents/dist/Title.js';
-import '@ui5/webcomponents/dist/Toast.js';
 
 import '@ui5/webcomponents-fiori/dist/ShellBar.js';
 import '@ui5/webcomponents-fiori/dist/ShellBarItem.js';
-import '@ui5/webcomponents-fiori/dist/Bar.js';
 
 import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 /**
- * Purpose: Register a new ToDos Item
+ * Purpose: Display detail of a ToDos item
  *
  * @customElement
  * @appliesMixin FBP
  */
-class ViewCreateTodos extends FBP(LitElement) {
+class ViewDetailTodos extends FBP(LitElement) {
   /**
    * flow is ready lifecycle method
    */
@@ -80,59 +80,55 @@ class ViewCreateTodos extends FBP(LitElement) {
         </ui5-shellbar>
 
         <furo-ui5-header-panel
-          icon="create"
-          collapsed
-          header-text="Add Todo Item"
-          secondary-text="Never again forget a task"
+          icon="task"
+          ƒ-bind-header-text="--daoToDoItem(*.data.id)"
+          ƒ-bind-secondary-text="--daoToDoItem(*.data.description)"
         >
+          <furo-ui5-button slot="action" design="Emphasized" @-click="--requestObjUpdate(toDoHTS)"
+            >Edit</furo-ui5-button
+          >
         </furo-ui5-header-panel>
 
         <furo-vertical-flex flex>
           <furo-ui5-dynamic-page-layout flex scroll padding>
-            <furo-form-layouter>
-              <!-- The message strip is a control that is used as an information bar. It contains information
+            <!-- The message strip is a control that is used as an information bar. It contains information
                    about an object or a status and can be embedded within the detail area of an object or page. -->
-              <furo-ui5-message-strip-display full></furo-ui5-message-strip-display>
-              <furo-ui5-message-strip
-                message="Sorry, the services for the Todo Management WebApp are currently not available. We are working on it."
-                ƒ-show-error="--badGateway, --fatalError"
-                ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
-              ></furo-ui5-message-strip>
+            <furo-ui5-message-strip-display full></furo-ui5-message-strip-display>
+            <furo-ui5-message-strip
+              message="Sorry, the GetTodo services are currently not available. We are working on it."
+              ƒ-show-error="--badGateway, --fatalError"
+              ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
+            ></furo-ui5-message-strip>
 
-              <!-- The ToDos register form -->
-              <ui5-title level="H4" full>New Entry</ui5-title>
-              <furo-ui5-data-textarea-input-labeled
-                ƒ-bind-data="--daoToDoItem(*.data.description)"
-              ></furo-ui5-data-textarea-input-labeled>
-              <furo-ui5-data-date-picker-labeled
-                ƒ-bind-data="--daoToDoItem(*.data.due_date)"
-              ></furo-ui5-data-date-picker-labeled>
-            </furo-form-layouter>
+            <!-- Read only card content -->
+            <furo-ui5-card icon="task" heading="ToDo Item Detail">
+              <furo-form-layouter two slot="content">
+                <furo-ui5-data-display
+                  ƒ-bind-data="--daoToDoItem(*.data.id)"
+                ></furo-ui5-data-display>
+                <furo-ui5-data-display
+                  ƒ-bind-data="--daoToDoItem(*.data.description)"
+                ></furo-ui5-data-display>
+                <furo-ui5-data-display
+                  ƒ-bind-data="--daoToDoItem(*.data.due_date)"
+                ></furo-ui5-data-display>
+              </furo-form-layouter>
+            </furo-ui5-card>
           </furo-ui5-dynamic-page-layout>
-
-          <!-- The action bar -->
-          <ui5-bar design="Footer">
-            <furo-ui5-button design="Emphasized" slot="endContent" @-click="--registerRequested"
-              >Register
-            </furo-ui5-button>
-          </ui5-bar>
         </furo-vertical-flex>
       </furo-vertical-flex>
-
-      <!-- A message toast is a small, non-disruptive popup for success messages that disappears automatically after a few seconds.-->
-      <ui5-toast ƒ-show="--saveOK">New ToDo item saved.</ui5-toast>
 
       <!-- Data model of type todos.Item -->
       <furo-data-object
         type="todos.ItemEntity"
         @-object-ready="--daoToDoItem"
-        ƒ-init="--pageActivated, --saveOK"
+        ƒ-inject-raw="--responseOK"
       ></furo-data-object>
 
       <!-- resolves hateoas links -->
       <furo-deep-link
         service="TodosService"
-        @-hts-out="--htsOut"
+        @-hts-out="--htsOut, ((toDoHTS))"
         ƒ-qp-in="--pageQueryChanged(*.query)"
       ></furo-deep-link>
 
@@ -140,9 +136,8 @@ class ViewCreateTodos extends FBP(LitElement) {
       <furo-entity-agent
         service="TodosService"
         ƒ-hts-in="--htsOut"
-        ƒ-create="--registerRequested"
-        ƒ-bind-request-data="--daoToDoItem(*.data)"
-        @-response="--saveOK"
+        load-on-hts-in
+        @-response="--responseOK"
         @-response-error-400="--grpcError"
         @-response-error-501="--notImplemented"
         @-response-error-502="--badGateway(*)"
@@ -152,14 +147,23 @@ class ViewCreateTodos extends FBP(LitElement) {
       <!-- Display a nice browser tab title and sets a navigation waypoint -->
       <furo-document-title
         prefix="Todo Management Tool"
-        title=" : Add new item"
+        ƒ-set-title="--response(*.data.description)"
         ƒ-set-waypoint="--pageActivated, --pageHashChanged"
       ></furo-document-title>
 
+      <!-- Required to create query params based on the set data record. -->
+      <furo-reverse-deep-link
+        rel="self"
+        service="TodosService"
+        @-converted="--queryParams"
+        ƒ-convert="--requestObjUpdate"
+      ></furo-reverse-deep-link>
+
       <!-- Application routing -->
-      <furo-app-flow ƒ-emit="--searchRequested" event="flow-todo-list-requested"></furo-app-flow>
+      <furo-app-flow event="flow-todo-list-requested" ƒ-emit="--searchRequested"></furo-app-flow>
+      <furo-app-flow event="flow-update-todo-requested" ƒ-emit="--queryParams"></furo-app-flow>
     `;
   }
 }
 
-window.customElements.define('view-create-todos', ViewCreateTodos);
+window.customElements.define('view-detail-todos', ViewDetailTodos);

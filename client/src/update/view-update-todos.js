@@ -29,12 +29,12 @@ import '@ui5/webcomponents-fiori/dist/Bar.js';
 import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 /**
- * Purpose: Register a new ToDos Item
+ * Purpose: Update a new ToDos Item
  *
  * @customElement
  * @appliesMixin FBP
  */
-class ViewCreateTodos extends FBP(LitElement) {
+class ViewUpdateTodos extends FBP(LitElement) {
   /**
    * flow is ready lifecycle method
    */
@@ -80,10 +80,10 @@ class ViewCreateTodos extends FBP(LitElement) {
         </ui5-shellbar>
 
         <furo-ui5-header-panel
-          icon="create"
+          icon="edit"
           collapsed
-          header-text="Add Todo Item"
-          secondary-text="Never again forget a task"
+          ƒ-bind-header-text="--daoToDoItem(*.data.id)"
+          ƒ-bind-secondary-text="--daoToDoItem(*.data.description)"
         >
         </furo-ui5-header-panel>
 
@@ -100,7 +100,7 @@ class ViewCreateTodos extends FBP(LitElement) {
               ></furo-ui5-message-strip>
 
               <!-- The ToDos register form -->
-              <ui5-title level="H4" full>New Entry</ui5-title>
+              <ui5-title level="H4" full>Update Entry</ui5-title>
               <furo-ui5-data-textarea-input-labeled
                 ƒ-bind-data="--daoToDoItem(*.data.description)"
               ></furo-ui5-data-textarea-input-labeled>
@@ -113,20 +113,20 @@ class ViewCreateTodos extends FBP(LitElement) {
           <!-- The action bar -->
           <ui5-bar design="Footer">
             <furo-ui5-button design="Emphasized" slot="endContent" @-click="--registerRequested"
-              >Register
+              >Update
             </furo-ui5-button>
           </ui5-bar>
         </furo-vertical-flex>
       </furo-vertical-flex>
 
       <!-- A message toast is a small, non-disruptive popup for success messages that disappears automatically after a few seconds.-->
-      <ui5-toast ƒ-show="--saveOK">New ToDo item saved.</ui5-toast>
+      <ui5-toast ƒ-show="--responseOK">ToDo item saved.</ui5-toast>
 
       <!-- Data model of type todos.Item -->
       <furo-data-object
         type="todos.ItemEntity"
         @-object-ready="--daoToDoItem"
-        ƒ-init="--pageActivated, --saveOK"
+        ƒ-inject-raw="--getResponseOK"
       ></furo-data-object>
 
       <!-- resolves hateoas links -->
@@ -140,9 +140,11 @@ class ViewCreateTodos extends FBP(LitElement) {
       <furo-entity-agent
         service="TodosService"
         ƒ-hts-in="--htsOut"
-        ƒ-create="--registerRequested"
+        load-on-hts-in
+        ƒ-save="--registerRequested"
         ƒ-bind-request-data="--daoToDoItem(*.data)"
-        @-response="--saveOK"
+        @-load-success="--getResponseOK"
+        @-save-success="--responseOK"
         @-response-error-400="--grpcError"
         @-response-error-501="--notImplemented"
         @-response-error-502="--badGateway(*)"
@@ -162,4 +164,4 @@ class ViewCreateTodos extends FBP(LitElement) {
   }
 }
 
-window.customElements.define('view-create-todos', ViewCreateTodos);
+window.customElements.define('view-update-todos', ViewUpdateTodos);

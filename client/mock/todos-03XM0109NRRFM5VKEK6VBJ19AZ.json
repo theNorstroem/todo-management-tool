@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "data": {
+        "id": "03XM0109NRRFM5VKEK6VBJ19AZ",
+        "description": "Sync with Peter",
+        "due_date": {
+          "day": 18,
+          "month": 11,
+          "year": 2021
+        },
+        "links": [
+          {
+            "rel": "self",
+            "method": "GET",
+            "href": "/api/todos/03XM0109NRRFM5VKEK6VBJ19AZ",
+            "service": "TodosService"
+          },
+          {
+            "rel": "update",
+            "method": "PATCH",
+            "href": "/api/todos/03XM0109NRRFM5VKEK6VBJ19AZ",
+            "service": "TodosService"
+          }
+        ]
+      }
+    }
+  ]
+}
