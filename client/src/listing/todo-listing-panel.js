@@ -6,10 +6,13 @@ import '@furo/route/src/furo-pages.js';
 
 import '@furo/ui5/src/furo-ui5-header-panel.js';
 import '@furo/ui5/src/furo-ui5-pagination-bar.js';
+import '@furo/ui5/src/furo-ui5-message-strip-display.js';
+import '@furo/ui5/src/furo-ui5-message-strip.js';
 
 import '../x/illustrated-messages/furo-ui5-illustrated-message.js';
 import '../x/illustrated-messages/illustrations/BeforeSearch.js';
 import '../x/illustrated-messages/illustrations/NoSearchResults.js';
+import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 import './todo-search-resultset.js';
 
@@ -66,7 +69,7 @@ class TodoListingPanel extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-vertical-flex>
-        <furo-ui5-header-panel header-text="Listing of ToDo Items">
+        <furo-ui5-header-panel header-text="Listing of ToDo Items" collapsed>
           <furo-keydown key="Enter" @-key="--EnterKeyPressed"></furo-keydown>
           <furo-horizontal-flex slot="action" space>
             <!-- we listen for "Enter" on the fields to trigger the search,
@@ -83,13 +86,24 @@ class TodoListingPanel extends FBP(LitElement) {
 
         </furo-ui5-header-panel>
 
+        <furo-ui5-dynamic-page-layout padding>
+          <furo-ui5-message-strip-display></furo-ui5-message-strip-display>
+          <furo-ui5-message-strip
+            message="Sorry, the listing services are currently not available. We are working on it."
+            ƒ-show-error="--err"
+            ƒ-show-grpc-localized-message="--grpcError"
+          ></furo-ui5-message-strip>
+        </furo-ui5-dynamic-page-layout>
+
         <furo-pages
           flex
           scroll
           default="BeforeSearch"
           ƒ-activate-page="--noSearchResults, --hasSearchResults, --initSearch"
         >
-          <ui5-illustrated-message name="BeforeSearch" title-text="Let's get some results" subtitle-text="Start by providing your search criteria."></ui5-illustrated-message>
+          <ui5-illustrated-message name="BeforeSearch" title-text="Let's get some results" subtitle-text="Start by providing your search criteria.">
+            <furo-ui5-button icon="edit" @-click="--registerToDoRequested">Register new item</furo-ui5-button>
+          </ui5-illustrated-message>
 
           <todo-search-resultset
             name="results"
@@ -98,6 +112,9 @@ class TodoListingPanel extends FBP(LitElement) {
             ƒ-reset="--resetTriggered"
             @-no-results="--noSearchResults"
             @-results="--hasSearchResults"
+            @-response-error="--err"
+            @-response-error-400="--grpcError"
+            @-fatal-error="--err"
             @-before-search-state="--initSearch"
             @-tablerow-selected="^^record-selected"
           ></todo-search-resultset>

@@ -33,10 +33,10 @@ services:
         description: The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
         data:
             request: google.protobuf.Empty
-            response: todos.ItemEntity
+            response: todos.ItemCollection
             bodyfield: body
         deeplink:
-            description: 'List: GET /todos google.protobuf.Empty, todos.ItemEntity #The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.'
+            description: 'List: GET /todos google.protobuf.Empty, todos.ItemCollection #The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.'
             href: /todos
             method: GET
             rel: list

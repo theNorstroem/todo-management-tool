@@ -3,7 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	todo "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/todo"
+	environment "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/env"
+	todogrpc "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/todo"
 	"google.golang.org/grpc"
 	"log"
 	"net"
@@ -20,8 +21,11 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
+	environment.InitEnv()
 
-	todo.RegisterServiceServer(s, todo.GetServiceServer())
+	todogrpc.Register()
+	todogrpc.RegisterServiceServer(s, todogrpc.GetServiceServer())
+
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
