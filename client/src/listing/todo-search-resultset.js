@@ -1,13 +1,13 @@
 import { css, html, LitElement } from 'lit';
 import { FBP } from '@furo/fbp/src/fbp.js';
 
-import '@furo/ui5/src/furo-ui5-message-strip.js';
-import '@furo/ui5/src/furo-ui5-message-strip-display.js';
 import '@furo/ui5/src/furo-ui5-data-table.js';
 
 import '@furo/data/src/furo-data-object.js';
 import '@furo/data/src/furo-deep-link.js';
 import '@furo/data/src/furo-collection-agent.js';
+
+import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 /**
  * Todos searcher component with result set
@@ -53,7 +53,6 @@ export class TodoSearchResultset extends FBP(LitElement) {
     return css`
       :host {
         display: block;
-        padding: var(--spacing, 24px);
       }
 
       :host([hidden]) {
@@ -98,12 +97,8 @@ export class TodoSearchResultset extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-      <furo-ui5-message-strip-display></furo-ui5-message-strip-display>
-      <furo-ui5-message-strip
-        message="Sorry, the listing services are currently not available. We are working on it."
-        ƒ-show-error="--err"
-        ƒ-show-grpc-localized-message="--grpcError"
-      ></furo-ui5-message-strip>
+
+      <furo-ui5-dynamic-page-layout padding>
 
       <furo-ui5-data-table
         no-data-text="No data available"
@@ -119,6 +114,8 @@ export class TodoSearchResultset extends FBP(LitElement) {
         <ui5-table-column slot="columns" field="*.data.id"><span>Id</span></ui5-table-column>
       </furo-ui5-data-table>
 
+      </furo-ui5-dynamic-page-layout>
+
       <!-- Creates HATEOAS links according the set specification. Required for DeepLinking. -->
       <furo-deep-link
         service="TodosService"
@@ -131,12 +128,8 @@ export class TodoSearchResultset extends FBP(LitElement) {
       -->
       <furo-collection-agent
         service="TodosService"
-        @-hts-updated="^^search-hts-updated"
         @-request-started="--reqStarted"
         @-response="--collectionResponse"
-        @-response-error="--err"
-        @-response-error-400="--grpcError"
-        @-fatal-error="--err"
         ƒ-list="--methodListForwarded"
         ƒ-hts-in="--htsOut,|--htsIn"
       ></furo-collection-agent>

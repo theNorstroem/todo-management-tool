@@ -1,70 +1,49 @@
-package todosservicepb
+package todo
 
 import (
-	"context"
-	"fmt"
+	"github.com/oklog/ulid"
 	todos "github.com/theNorstroem/todo-management-tool/api/dist/pb/todos"
-	proto "github.com/theNorstroem/todo-management-tool/api/dist/pb/todosservice"
-	"google.golang.org/genproto/googleapis/rpc/errdetails"
-	"google.golang.org/genproto/googleapis/type/date"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	environment "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/env"
+	"github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/query"
+	ulidPkg "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/ulid"
+	"github.com/upper/db/v4"
+	"strconv"
 )
 
-var RegisterServiceServer = proto.RegisterTodosServiceServer
+// Interface zur Env
+var env *environment.Environment
 
-func GetServiceServer() proto.TodosServiceServer {
-	var s serviceServer
-	return &s
+// todos collection
+var todoCol db.Collection
+
+// Item represents a record from the "todo" table.
+type Item struct {
+	Id          ulid.ULID `db:"id,omitempty"`
+	Description string    `db:"description"`
+	DueDate     string    `db:"due_date"`
 }
 
-type serviceServer struct {
-	proto.UnimplementedTodosServiceServer
+func Register() {
+	env = environment.Env
+	todoCol = env.DB.Collection("todo")
 }
 
-func (s serviceServer) mustEmbedUnimplementedTodosServiceServer() {
-	panic("implement me")
+// CreateToDoItem adds a new todos.Item to the database
+func CreateToDoItem(data *todos.Item) (*Item, error) {
+	item := &Item{}
+	item.Id = ulidPkg.GenerateULID()
+	item.Description = data.Description
+	item.DueDate = strconv.Itoa(int(data.DueDate.Year)) + "-" + strconv.Itoa(int(data.DueDate.Month)) + "-" + strconv.Itoa(int(data.DueDate.Day))
+
+	_, err := todoCol.Insert(item)
+
+	return item, err
 }
 
-func (s serviceServer) CreateTodo(ctx context.Context, request *proto.CreateTodoRequest) (*todos.ItemEntity, error) {
-
-	return &todos.ItemEntity{Data: &todos.Item{
-		Id:          "01FM0109NRRFM5VKEK6VBJ19AZ",
-		Description: "Dummy ToDo task",
-		DueDate: &date.Date{
-			Year:  2021,
-			Month: 11,
-			Day:   8,
-		},
-	}}, nil
-
-}
-
-func (s serviceServer) GetTodo(ctx context.Context, request *proto.GetTodoRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError("Sorry. The GetTodos service will be soon available")
-}
-
-func (s serviceServer) ListTodos(ctx context.Context, request *proto.ListTodosRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError("Sorry. The ListTodos service will be soon available")
-}
-
-func (s serviceServer) UpdateTodo(ctx context.Context, request *proto.UpdateTodoRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError("Sorry. The UpdateTodos service will be soon available")
-}
-
-// builds a universal unimplemented google.rpc.Status with LocalizedMessage as a detail
-func newUnimplementedError(msg string) error {
-	st := status.New(codes.Unimplemented, "This service endpoint is not yet available")
-	v := &errdetails.LocalizedMessage{
-		Locale:  "en-GB",
-		Message: msg,
-	}
-	st, err := st.WithDetails(v)
-	if err != nil {
-		// If this errored, it will always error
-		// here, so better panic so we can figure
-		// out why than have this silently passing.
-		panic(fmt.Sprintf("Unexpected error attaching metadata: %v", err))
-	}
-	return st.Err()
+// ListToDoItems selects all rows
+func ListToDoItems(options query.QueryOptions) ([]*Item, error) {
+	results := todoCol.Find()
+	var items []*Item
+	err := results.All(&items)
+	return items, err
 }

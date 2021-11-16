@@ -24,7 +24,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/todosItemEntity"
+              "$ref": "#/definitions/todosItemCollection"
             }
           },
           "default": {
@@ -318,6 +318,30 @@
         }
       },
       "title": "Simple ToDos Item Type"
+    },
+    "todosItemCollection": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/furoMeta",
+          "title": "Meta for the response"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/furoLink"
+          },
+          "title": "the Hateoas links"
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/todosItemEntity"
+          },
+          "title": "the data contains a todos.Item"
+        }
+      },
+      "title": "Collectioncontainer which holds items of type todos.ItemEntity"
     },
     "todosItemEntity": {
       "type": "object",
