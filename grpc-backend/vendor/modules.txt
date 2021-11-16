@@ -19,7 +19,7 @@ github.com/oklog/ulid
 # github.com/theNorstroem/FuroBaseSpecs v1.27.1
 ## explicit; go 1.14
 github.com/theNorstroem/FuroBaseSpecs/dist/pb/furo
-# github.com/theNorstroem/todo-management-tool/api v0.0.0-20211110104547-189878b712e5
+# github.com/theNorstroem/todo-management-tool/api v0.0.0-20211116170221-e85a44a0f937
 ## explicit; go 1.17
 github.com/theNorstroem/todo-management-tool/api/dist/pb/todos
 github.com/theNorstroem/todo-management-tool/api/dist/pb/todosservice

@@ -37,7 +37,7 @@ func mapItemToItemEntity(item *Item) *todos.ItemEntity {
 		Method:  "GET",
 		Href:    "/api/todos/" + out.Id,
 		Type:    "todos.Item",
-		Service: "TodosServive",
+		Service: "TodosService",
 	})
 
 	return &todos.ItemEntity{
@@ -54,9 +54,18 @@ func mapItemsToItemCollcetion(todoList []*Item) *todos.ItemCollection {
 		todoEntity := mapItemToItemEntity(todoItem)
 		todoItems = append(todoItems, todoEntity)
 	}
+	hts := []*furo.Link{}
+	hts = append(hts, &furo.Link{
+		Rel:     "list",
+		Method:  "GET",
+		Href:    "/api/todos",
+		Type:    "todos.Item",
+		Service: "TodosService",
+	})
+
 	return &todos.ItemCollection{
 		Meta:     nil,
-		Links:    nil,
+		Links:    hts,
 		Entities: todoItems,
 	}
 }

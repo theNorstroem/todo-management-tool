@@ -30,15 +30,12 @@ type FieldSet struct {
 	fields map[string]string
 }
 
-// Makes an empty fieldSet
 func GetFieldSet() FieldSet {
 	set := FieldSet{}
 	set.fields = make(map[string]string)
 	return set
 }
 
-// Optionen für Listenelemente kommen aus dem proto als beliebiger Typ daher, jedoch immer in der gleichen nummerierung
-// diese werden in die QueryOptions Form gebracht, damit upper sauber damit umgehen kann.
 func GetListOptionsFromRequest(options interface{}) QueryOptions {
 	tmp, _ := json.Marshal(options)
 	var opts QueryOptions

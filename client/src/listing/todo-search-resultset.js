@@ -128,7 +128,6 @@ export class TodoSearchResultset extends FBP(LitElement) {
       -->
       <furo-collection-agent
         service="TodosService"
-        @-hts-updated="^^search-hts-updated"
         @-request-started="--reqStarted"
         @-response="--collectionResponse"
         ƒ-list="--methodListForwarded"

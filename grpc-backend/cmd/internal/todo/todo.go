@@ -40,8 +40,9 @@ func CreateToDoItem(data *todos.Item) (*Item, error) {
 	return item, err
 }
 
+// ListToDoItems selects all rows
 func ListToDoItems(options query.QueryOptions) ([]*Item, error) {
-	results := todoCol.Find(options)
+	results := todoCol.Find()
 	var items []*Item
 	err := results.All(&items)
 	return items, err

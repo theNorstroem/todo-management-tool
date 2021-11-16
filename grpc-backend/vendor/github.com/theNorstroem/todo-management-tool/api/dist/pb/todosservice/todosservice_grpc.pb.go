@@ -24,7 +24,7 @@ type TodosServiceClient interface {
 	// The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
 	GetTodo(ctx context.Context, in *GetTodoRequest, opts ...grpc.CallOption) (*todos.ItemEntity, error)
 	// The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
-	ListTodos(ctx context.Context, in *ListTodosRequest, opts ...grpc.CallOption) (*todos.ItemEntity, error)
+	ListTodos(ctx context.Context, in *ListTodosRequest, opts ...grpc.CallOption) (*todos.ItemCollection, error)
 	// The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
 	UpdateTodo(ctx context.Context, in *UpdateTodoRequest, opts ...grpc.CallOption) (*todos.ItemEntity, error)
 }
@@ -55,8 +55,8 @@ func (c *todosServiceClient) GetTodo(ctx context.Context, in *GetTodoRequest, op
 	return out, nil
 }
 
-func (c *todosServiceClient) ListTodos(ctx context.Context, in *ListTodosRequest, opts ...grpc.CallOption) (*todos.ItemEntity, error) {
-	out := new(todos.ItemEntity)
+func (c *todosServiceClient) ListTodos(ctx context.Context, in *ListTodosRequest, opts ...grpc.CallOption) (*todos.ItemCollection, error) {
+	out := new(todos.ItemCollection)
 	err := c.cc.Invoke(ctx, "/todosservice.TodosService/ListTodos", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -82,7 +82,7 @@ type TodosServiceServer interface {
 	// The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
 	GetTodo(context.Context, *GetTodoRequest) (*todos.ItemEntity, error)
 	// The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
-	ListTodos(context.Context, *ListTodosRequest) (*todos.ItemEntity, error)
+	ListTodos(context.Context, *ListTodosRequest) (*todos.ItemCollection, error)
 	// The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
 	UpdateTodo(context.Context, *UpdateTodoRequest) (*todos.ItemEntity, error)
 	mustEmbedUnimplementedTodosServiceServer()
@@ -98,7 +98,7 @@ func (UnimplementedTodosServiceServer) CreateTodo(context.Context, *CreateTodoRe
 func (UnimplementedTodosServiceServer) GetTodo(context.Context, *GetTodoRequest) (*todos.ItemEntity, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTodo not implemented")
 }
-func (UnimplementedTodosServiceServer) ListTodos(context.Context, *ListTodosRequest) (*todos.ItemEntity, error) {
+func (UnimplementedTodosServiceServer) ListTodos(context.Context, *ListTodosRequest) (*todos.ItemCollection, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTodos not implemented")
 }
 func (UnimplementedTodosServiceServer) UpdateTodo(context.Context, *UpdateTodoRequest) (*todos.ItemEntity, error) {

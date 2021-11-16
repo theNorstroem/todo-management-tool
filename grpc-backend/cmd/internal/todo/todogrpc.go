@@ -40,8 +40,9 @@ func (s serviceServer) GetTodo(ctx context.Context, request *proto.GetTodoReques
 }
 
 func (s serviceServer) ListTodos(ctx context.Context, request *proto.ListTodosRequest) (*todos.ItemCollection, error) {
-	queryOptions := query.GetListOptionsFromRequest(request)
-	items, err := ListToDoItems(queryOptions)
+	// queryOptions := query.GetListOptionsFromRequest(request)
+
+	items, err := ListToDoItems(query.QueryOptions{})
 	if err != nil {
 		return nil, newBadRequestError(err.Error())
 	}

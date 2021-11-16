@@ -6,7 +6,7 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/oklog/ulid v1.3.1
 	github.com/theNorstroem/FuroBaseSpecs v1.27.1
-	github.com/theNorstroem/todo-management-tool/api v0.0.0-20211110104547-189878b712e5
+	github.com/theNorstroem/todo-management-tool/api v0.0.0-20211116170221-e85a44a0f937
 	github.com/upper/db/v4 v4.2.1
 	google.golang.org/genproto v0.0.0-20210903162649-d08c68adba83
 	google.golang.org/grpc v1.40.0
