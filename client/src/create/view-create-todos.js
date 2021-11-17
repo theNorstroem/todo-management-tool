@@ -120,9 +120,9 @@ class ViewCreateTodos extends FBP(LitElement) {
       </furo-vertical-flex>
 
       <!-- A message toast is a small, non-disruptive popup for success messages that disappears automatically after a few seconds.-->
-      <ui5-toast ƒ-show="--saveOK">New ToDo item saved.</ui5-toast>
+      <ui5-toast ƒ-show="--saveOK" duration="1500">New ToDo item stored.</ui5-toast>
 
-      <!-- Data model of type todos.Item -->
+      <!-- Data model of type todos.ItemEntity -->
       <furo-data-object
         type="todos.ItemEntity"
         @-object-ready="--daoToDoItem"
@@ -133,7 +133,7 @@ class ViewCreateTodos extends FBP(LitElement) {
       <furo-deep-link
         service="TodosService"
         @-hts-out="--htsOut"
-        ƒ-qp-in="--pageQueryChanged(*.query)"
+        ƒ-qp-in="--pageQueryChanged(*.query), --saveOK"
       ></furo-deep-link>
 
       <!-- ToDos gRPC Service -->

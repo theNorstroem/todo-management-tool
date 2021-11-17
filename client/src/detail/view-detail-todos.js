@@ -79,11 +79,7 @@ class ViewDetailTodos extends FBP(LitElement) {
           ></ui5-shellbar-item>
         </ui5-shellbar>
 
-        <furo-ui5-header-panel
-          icon="task"
-          ƒ-bind-header-text="--daoToDoItem(*.data.id)"
-          ƒ-bind-secondary-text="--daoToDoItem(*.data.description)"
-        >
+        <furo-ui5-header-panel icon="task" ƒ-bind-header-text="--daoToDoItem(*.data.id)">
           <furo-ui5-button slot="action" design="Emphasized" @-click="--requestObjUpdate(toDoHTS)"
             >Edit</furo-ui5-button
           >
