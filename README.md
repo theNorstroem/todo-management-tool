@@ -6,7 +6,7 @@
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> chapter 05: git checkout c05_grpc_backend
+> chapter 06: git checkout c06_mvp
  
 ## New Project Structure
 .
