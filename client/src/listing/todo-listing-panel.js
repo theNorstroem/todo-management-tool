@@ -87,7 +87,7 @@ class TodoListingPanel extends FBP(LitElement) {
         </furo-ui5-header-panel>
 
         <furo-ui5-dynamic-page-layout padding>
-          <furo-ui5-message-strip-display></furo-ui5-message-strip-display>
+          <furo-ui5-message-strip-display ƒ-clear-all="--resetTriggered"></furo-ui5-message-strip-display>
           <furo-ui5-message-strip
             message="Sorry, the listing services are currently not available. We are working on it."
             ƒ-show-error="--err"

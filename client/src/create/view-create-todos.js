@@ -110,7 +110,7 @@ class ViewCreateTodos extends FBP(LitElement) {
             </furo-form-layouter>
           </furo-ui5-dynamic-page-layout>
 
-          <!-- The action bar -->
+          <!-- The form action bar -->
           <ui5-bar design="Footer">
             <furo-ui5-button design="Emphasized" slot="endContent" @-click="--registerRequested"
               >Register
@@ -122,7 +122,7 @@ class ViewCreateTodos extends FBP(LitElement) {
       <!-- A message toast is a small, non-disruptive popup for success messages that disappears automatically after a few seconds.-->
       <ui5-toast ƒ-show="--saveOK" duration="1500">New ToDo item stored.</ui5-toast>
 
-      <!-- Data model of type todos.ItemEntity -->
+      <!-- Data model of type todos.ItemEntity (/api/muspecs/ItemEntity.types.yaml)-->
       <furo-data-object
         type="todos.ItemEntity"
         @-object-ready="--daoToDoItem"
@@ -136,7 +136,7 @@ class ViewCreateTodos extends FBP(LitElement) {
         ƒ-qp-in="--pageQueryChanged(*.query), --saveOK"
       ></furo-deep-link>
 
-      <!-- ToDos gRPC Service -->
+      <!-- ToDos gRPC Service (/api/muspecs/TodoService.services.yaml) -->
       <furo-entity-agent
         service="TodosService"
         ƒ-hts-in="--htsOut"
