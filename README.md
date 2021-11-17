@@ -17,8 +17,6 @@ We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a
 |-- client
 `-- grpc-backend
 
-Peter moved all the content of his api contract to the new folder `api`.
-
 ## Local API Development
 
 ### Use local container build
@@ -63,4 +61,12 @@ go install ./cmd/...
 tmt-grpc
 ```
 
+## Local gRPC Gateway
+All the gRPC gateway code is located in the subfolder `/api/dist/grpc-gateway`.
 
+```
+cd api
+go install ./dist/grpc-server/cmd/...
+GW_SERVER_ADDRESS=localhost:8481 GRPC_SERVER_ADDRESS=localhost:7070 cmd
+
+```
