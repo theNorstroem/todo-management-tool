@@ -79,12 +79,7 @@ class ViewUpdateTodos extends FBP(LitElement) {
           ></ui5-shellbar-item>
         </ui5-shellbar>
 
-        <furo-ui5-header-panel
-          icon="edit"
-          collapsed
-          ƒ-bind-header-text="--daoToDoItem(*.data.id)"
-          ƒ-bind-secondary-text="--daoToDoItem(*.data.description)"
-        >
+        <furo-ui5-header-panel icon="edit" collapsed ƒ-bind-header-text="--daoToDoItem(*.data.id)">
         </furo-ui5-header-panel>
 
         <furo-vertical-flex flex>

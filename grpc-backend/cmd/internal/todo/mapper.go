@@ -12,7 +12,19 @@ import (
 // Mappings
 // from: proto.CreateTodoRequest
 // to:   todos.Item
-func mapRequestBodyToTodoItem(req *proto.CreateTodoRequest) *todos.Item {
+func mapCreateRequestBodyToTodoItem(req *proto.CreateTodoRequest) *todos.Item {
+	out := &todos.Item{}
+	out.Id = req.Body.Id
+	out.Description = req.Body.Description
+	out.DueDate = req.Body.GetDueDate()
+
+	return out
+}
+
+// Mappings
+// from: proto.UpdateTodoRequest
+// to:   todos.Item
+func mapUpdateRequestBodyToTodoItem(req *proto.UpdateTodoRequest) *todos.Item {
 	out := &todos.Item{}
 	out.Id = req.Body.Id
 	out.Description = req.Body.Description
@@ -29,12 +41,21 @@ func mapItemToItemEntity(item *Item) *todos.ItemEntity {
 	out := &todos.Item{}
 	out.Id = item.Id.String()
 	out.Description = item.Description
-	out.DueDate = mapISO8601ToDate(item.DueDate)
+	if item.DueDate != "" {
+		out.DueDate = mapISO8601ToDate(item.DueDate)
+	}
 
 	hts := []*furo.Link{}
 	hts = append(hts, &furo.Link{
 		Rel:     "self",
 		Method:  "GET",
+		Href:    "/api/todos/" + out.Id,
+		Type:    "todos.Item",
+		Service: "TodosService",
+	})
+	hts = append(hts, &furo.Link{
+		Rel:     "update",
+		Method:  "PATCH",
 		Href:    "/api/todos/" + out.Id,
 		Type:    "todos.Item",
 		Service: "TodosService",

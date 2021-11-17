@@ -3,9 +3,9 @@ package todo
 import (
 	"context"
 	"fmt"
+	"github.com/oklog/ulid"
 	todos "github.com/theNorstroem/todo-management-tool/api/dist/pb/todos"
 	proto "github.com/theNorstroem/todo-management-tool/api/dist/pb/todosservice"
-	"github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/query"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -28,7 +28,7 @@ func (s serviceServer) mustEmbedUnimplementedTodosServiceServer() {
 
 func (s serviceServer) CreateTodo(ctx context.Context, request *proto.CreateTodoRequest) (*todos.ItemEntity, error) {
 
-	item, err := CreateToDoItem(mapRequestBodyToTodoItem(request))
+	item, err := CreateToDoItem(mapCreateRequestBodyToTodoItem(request))
 	if err != nil {
 		return nil, newBadRequestError(err.Error())
 	}
@@ -36,13 +36,18 @@ func (s serviceServer) CreateTodo(ctx context.Context, request *proto.CreateTodo
 }
 
 func (s serviceServer) GetTodo(ctx context.Context, request *proto.GetTodoRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError("Sorry. The GetTodos service will be soon available")
+
+	ident, _ := ulid.Parse(request.Tdi)
+	item, err := GetToDoItem(ident)
+	if err != nil {
+		return nil, newBadRequestError(err.Error())
+	}
+	return mapItemToItemEntity(item), err
 }
 
 func (s serviceServer) ListTodos(ctx context.Context, request *proto.ListTodosRequest) (*todos.ItemCollection, error) {
-	// queryOptions := query.GetListOptionsFromRequest(request)
 
-	items, err := ListToDoItems(query.QueryOptions{})
+	items, err := ListToDoItems()
 	if err != nil {
 		return nil, newBadRequestError(err.Error())
 	}
@@ -50,7 +55,13 @@ func (s serviceServer) ListTodos(ctx context.Context, request *proto.ListTodosRe
 }
 
 func (s serviceServer) UpdateTodo(ctx context.Context, request *proto.UpdateTodoRequest) (*todos.ItemEntity, error) {
-	return nil, newUnimplementedError("Sorry. The UpdateTodos service will be soon available")
+
+	ident, _ := ulid.Parse(request.Tdi)
+	item, err := UpdateToDoItem(ident, mapUpdateRequestBodyToTodoItem(request))
+	if err != nil {
+		return nil, newBadRequestError(err.Error())
+	}
+	return mapItemToItemEntity(item), err
 }
 
 // builds a universal Unimplemented error with google.rpc.Status with LocalizedMessage as a detail

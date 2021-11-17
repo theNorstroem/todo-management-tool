@@ -97,23 +97,20 @@ export class TodoSearchResultset extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-
       <furo-ui5-dynamic-page-layout padding>
-
-      <furo-ui5-data-table
-        no-data-text="No data available"
-        ƒ-bind-data="--collectionDao(*.entities)"
-      >
-        <ui5-table-column slot="columns" min-width="900" demand-popin field="*.data.description"
-          ><span>Description</span></ui5-table-column
+        <furo-ui5-data-table
+          no-data-text="No data available"
+          ƒ-bind-data="--collectionDao(*.entities)"
         >
+          <ui5-table-column slot="columns" min-width="320" demand-popin field="*.data.description"
+            ><span>Description</span></ui5-table-column
+          >
 
-        <ui5-table-column slot="columns" field="*.data.due_date"
-          ><span>Due date</span></ui5-table-column
-        >
-        <ui5-table-column slot="columns" field="*.data.id"><span>Id</span></ui5-table-column>
-      </furo-ui5-data-table>
-
+          <ui5-table-column slot="columns" field="*.data.due_date"
+            ><span>Due date</span></ui5-table-column
+          >
+          <ui5-table-column slot="columns" field="*.data.id"><span>Id</span></ui5-table-column>
+        </furo-ui5-data-table>
       </furo-ui5-dynamic-page-layout>
 
       <!-- Creates HATEOAS links according the set specification. Required for DeepLinking. -->
