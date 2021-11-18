@@ -35,8 +35,8 @@ service TodosService {
   }
 
   // The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
-  rpc ListTodos (ListTodosRequest) returns (todos.ItemEntity){
-	//List: GET /todos google.protobuf.Empty, todos.ItemEntity #The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
+  rpc ListTodos (ListTodosRequest) returns (todos.ItemCollection){
+	//List: GET /todos google.protobuf.Empty, todos.ItemCollection #The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
 	option (google.api.http) = {
 		get: "/todos"
 		
