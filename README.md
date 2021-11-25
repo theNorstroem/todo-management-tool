@@ -49,7 +49,7 @@ npm run start:mock
 
 ### Starting Web Application with backend proxy (backend for frontend)
 ```
-npm run start:bff
+npm run start
 ```
 
 
