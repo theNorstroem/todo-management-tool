@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	environment "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/env"
-	todogrpc "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/todo"
+	environment "github.com/theNorstroem/todo-management-tool/grpc-backend/internal/env"
+	todogrpc "github.com/theNorstroem/todo-management-tool/grpc-backend/internal/todo"
 	"google.golang.org/grpc"
 	"log"
 	"net"
