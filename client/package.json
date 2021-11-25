@@ -16,7 +16,7 @@
   "main": "",
   "scripts": {
     "start:mock": "concurrently --kill-others \"es-dev-server --open\" \"./scripts/mock.sh\"",
-    "start:bff": "es-dev-server --open",
+    "start": "es-dev-server --open",
     "start:build": "npm run build && es-dev-server --root-dir dist --config es-dev-server-build.config.js --app-index index.html --compatibility none",
     "format": "npm run format:eslint && npm run format:prettier",
     "lint": "npm run lint:eslint && npm run lint:prettier",

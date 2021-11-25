@@ -9,7 +9,7 @@ We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a
 
 > chapter 01: git checkout c01_todos_api_contract
  
-## New Project Structure
+## Final Project Structure
 .
 |-- LICENSE
 |-- README.md
@@ -37,7 +37,7 @@ Commands: https://furo.pro/docs/commands/
 ## Local Web Application Development
 All the web application source is located in the subfolder `client`.
 
-### Install Dependencies
+### Install dependencies
 ```
 npm i
 ```
@@ -49,12 +49,18 @@ npm run start:mock
 
 ### Starting Web Application with backend proxy (backend for frontend)
 ```
-npm run start:bff
+npm run start
 ```
 
 ## Local gRPC Server Development
 All the gRPC server code is located in the subfolder `/grpc-backend`.
 
+```
+cd grpc-backend
+go run ./...
+```
+
+or with the built version
 ```
 cd grpc-backend
 go install ./cmd/...
@@ -66,7 +72,14 @@ All the gRPC gateway code is located in the subfolder `/api/dist/grpc-gateway`.
 
 ```
 cd api
+go run ./...
+```
+
+or with the built version
+```
+cd api
 go install ./dist/grpc-server/cmd/...
 GW_SERVER_ADDRESS=localhost:8481 GRPC_SERVER_ADDRESS=localhost:7070 cmd
 
 ```
+
