@@ -102,6 +102,7 @@ class ViewCreateTodos extends FBP(LitElement) {
               <!-- The ToDos register form -->
               <ui5-title level="H4" full>New Entry</ui5-title>
               <furo-ui5-data-textarea-input-labeled
+                ƒ-focus="--saveOK"
                 ƒ-bind-data="--daoToDoItem(*.data.description)"
               ></furo-ui5-data-textarea-input-labeled>
               <furo-ui5-data-date-picker-labeled
@@ -120,7 +121,7 @@ class ViewCreateTodos extends FBP(LitElement) {
       </furo-vertical-flex>
 
       <!-- A message toast is a small, non-disruptive popup for success messages that disappears automatically after a few seconds.-->
-      <ui5-toast ƒ-show="--saveOK" duration="1500">New ToDo item stored.</ui5-toast>
+      <ui5-toast ƒ-show="--saveOK" duration="2500">New ToDo item stored.</ui5-toast>
 
       <!-- Data model of type todos.ItemEntity (/api/muspecs/ItemEntity.types.yaml)-->
       <furo-data-object

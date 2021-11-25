@@ -79,7 +79,7 @@ class TodoListingPanel extends FBP(LitElement) {
             >List</furo-ui5-button
             >
             <furo-ui5-button design="Transparent" @-click="--resetTriggered"
-            >Reset</furo-ui5-button
+            >Clear</furo-ui5-button
             >
           </furo-horizontal-flex>
         </furo-ui5-header-panel>

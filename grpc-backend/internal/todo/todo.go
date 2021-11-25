@@ -3,8 +3,8 @@ package todo
 import (
 	"github.com/oklog/ulid"
 	todos "github.com/theNorstroem/todo-management-tool/api/dist/pb/todos"
-	environment "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/env"
-	ulidPkg "github.com/theNorstroem/todo-management-tool/grpc-backend/cmd/internal/pkg/ulid"
+	environment "github.com/theNorstroem/todo-management-tool/grpc-backend/internal/env"
+	ulidPkg "github.com/theNorstroem/todo-management-tool/grpc-backend/internal/ulid"
 	"github.com/upper/db/v4"
 	"strconv"
 )
