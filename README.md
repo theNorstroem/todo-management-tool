@@ -8,13 +8,12 @@ We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a
 
 > chapter 03: git checkout c03_api_review
  
-## New Project Structure
+## Project Structure
 .
 |-- LICENSE
 |-- README.md
 |-- api
 |-- client
-`-- server
 
 Peter moved all the content of his api contract to the new folder `api`.
 
