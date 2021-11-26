@@ -1,6 +1,6 @@
 # Creating an enterprise-flavoured ToDo application from scratch with the Furo Web Stack
 
-- _eBook_: coming soon
+- _eBook_: [eBook.pdf](./eBook.pdf) [eBook.eub](./eBook.epub)
 - _Repository_: https://github.com/theNorstroem/todo-management-tool
 - _Furo Web Stack_: https://furo.pro/
 
