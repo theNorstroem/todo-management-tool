@@ -1,6 +1,9 @@
 // Initialize application env, theme, api
 import { Init, i18n, Env } from '@furo/framework/src/furo.js';
 
+// SAP UI5 custom inits
+// import './ui5Init.js';
+
 /**
  * Use the installed spec if you finally have a separate spec project (recommended)
  */
@@ -107,9 +110,24 @@ i18n.n = (key, num) => {
 i18n.registerResBundle(Translations);
 
 /**
+ * Grap URL parameters for
+ * - theming
+ * - language
+ * @type {string}
+ */
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+/**
+ * UI language
+ * @type {string|string}
+ */
+let locale = urlParams.get('sap-ui-language') || 'en';
+Env.locale = locale;
+
+/**
  * Translate static messages in SPEC
  */
-let locale = 'de-CH';
 if (i18n.resbundle[Env.locale.toLowerCase().replace('-', '_')]) {
   locale = Env.locale.toLowerCase().replace('-', '_');
 }

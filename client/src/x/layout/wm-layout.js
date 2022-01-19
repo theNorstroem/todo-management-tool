@@ -1,8 +1,7 @@
 import { LitElement, html, css } from 'lit';
-import { Theme } from '@furo/framework/src/theme.js';
 import { FBP } from '@furo/fbp';
-import '@furo/layout/src/furo-z-grid.js';
-import '@furo/layout/src/furo-split-grid.js';
+import '@furo/ui5/src/furo-ui5-z-grid.js';
+import '@furo/ui5/src/furo-ui5-flexible-grid.js';
 
 /**
  * `wm-layout`
@@ -30,7 +29,6 @@ class WmLayout extends FBP(LitElement) {
   static get styles() {
     // language=CSS
     return (
-      Theme.getThemeForComponent('WmLayout') ||
       css`
         :host {
           display: block;
@@ -67,15 +65,15 @@ class WmLayout extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-      <furo-split-grid padding>
+      <furo-flexible-grid padding>
         <div full><slot name="top"></slot></div>
         <div hspan="6" full-on-size-medium full-on-size-small class="left">
           <slot name="left"></slot>
         </div>
-        <furo-z-grid hstart="7" fill>
+        <furo-ui5-z-grid hstart="7" fill>
           <slot></slot>
-        </furo-z-grid>
-      </furo-split-grid>
+        </furo-ui5-z-grid>
+      </furo-flexible-grid>
     `;
   }
 }

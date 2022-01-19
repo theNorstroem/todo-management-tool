@@ -2,6 +2,7 @@ import { css, html, LitElement } from 'lit';
 import { FBP } from '@furo/fbp/src/fbp.js';
 
 import '@furo/layout/src/furo-vertical-flex.js';
+import '@furo/layout/src/furo-form-layouter.js';
 
 import '@furo/route/src/furo-app-flow.js';
 import '@furo/route/src/furo-location-updater.js';
@@ -11,13 +12,13 @@ import '@furo/data/src/furo-deep-link.js';
 import '@furo/data/src/furo-entity-agent.js';
 import '@furo/data/src/furo-data-object.js';
 
-import '@furo/form/src/furo-form-layouter.js';
-
 import '@furo/ui5/src/furo-ui5-header-panel.js';
-import '@furo/ui5/src/furo-ui5-data-textarea-input-labeled.js';
+import '@furo/ui5/src/furo-ui5-typerenderer-labeled.js';
 import '@furo/ui5/src/furo-ui5-message-strip.js';
 import '@furo/ui5/src/furo-ui5-message-strip-display.js';
 import '@furo/ui5/src/furo-ui5-button.js';
+import '@furo/ui5/src/furo-ui5-date-picker-labeled.js';
+import '@furo/ui5/src/furo-ui5-textarea-input-labeled.js';
 
 import '@ui5/webcomponents/dist/Title.js';
 import '@ui5/webcomponents/dist/Toast.js';
@@ -100,12 +101,12 @@ class ViewCreateTodos extends FBP(LitElement) {
 
               <!-- The ToDos register form -->
               <ui5-title level="H4" full>New Entry</ui5-title>
-              <furo-ui5-data-textarea-input-labeled
+              <furo-ui5-textarea-input-labeled
                 ƒ-bind-data="--daoToDoItem(*.data.description)"
-              ></furo-ui5-data-textarea-input-labeled>
-              <furo-ui5-data-date-picker-labeled
+              ></furo-ui5-textarea-input-labeled>
+              <furo-ui5-date-picker-labeled
                 ƒ-bind-data="--daoToDoItem(*.data.due_date)"
-              ></furo-ui5-data-date-picker-labeled>
+              ></furo-ui5-date-picker-labeled>
             </furo-form-layouter>
           </furo-ui5-dynamic-page-layout>
 
