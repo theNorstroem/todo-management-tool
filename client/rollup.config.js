@@ -7,6 +7,7 @@ const workboxConfig = require('./workbox-config.js');
 const { generateSW } = require('rollup-plugin-workbox');
 
 import copy from 'rollup-plugin-copy';
+import json from '@rollup/plugin-json';
 
 // use createBasicConfig to do regular JS to JS bundling
 // import { createBasicConfig } from '@open-wc/building-rollup';
@@ -33,7 +34,7 @@ const copyConf = merge(baseConfig, {
     copy({
       targets: [
         { src: 'assets/**/*', dest: 'dist/assets' },
-        { src: 'src/configs/flowConfig.json', dest: 'dist/src' },
+        { src: 'src/configs/flowConfig.flow', dest: 'dist/src' },
         { src: 'manifest.webmanifest', dest: 'dist' },
         { src: 'favicon.ico', dest: 'dist' },
         { src: 'robots.txt', dest: 'dist' },
@@ -53,7 +54,7 @@ export default merge(copyConf, {
   // any <script type="module"> inside will be bundled by rollup
   input: './index.html',
 
-  plugins: [generateSW(workboxConfig)],
+  plugins: [generateSW(workboxConfig), json()],
   // alternatively, you can use your JS as entrypoint for rollup and
   // optionally set a HTML template manually
   // input: './app.js',

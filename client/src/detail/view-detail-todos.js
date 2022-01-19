@@ -2,6 +2,7 @@ import { css, html, LitElement } from 'lit';
 import { FBP } from '@furo/fbp/src/fbp.js';
 
 import '@furo/layout/src/furo-vertical-flex.js';
+import '@furo/layout/src/furo-form-layouter.js';
 
 import '@furo/route/src/furo-app-flow.js';
 import '@furo/route/src/furo-location-updater.js';
@@ -12,13 +13,11 @@ import '@furo/data/src/furo-reverse-deep-link.js';
 import '@furo/data/src/furo-entity-agent.js';
 import '@furo/data/src/furo-data-object.js';
 
-import '@furo/form/src/furo-form-layouter.js';
-
 import '@furo/ui5/src/furo-ui5-header-panel.js';
 import '@furo/ui5/src/furo-ui5-message-strip.js';
 import '@furo/ui5/src/furo-ui5-message-strip-display.js';
 import '@furo/ui5/src/furo-ui5-card.js';
-import '@furo/ui5/src/furo-ui5-data-display.js';
+import '@furo/ui5/src/furo-ui5-typerenderer-labeled.js';
 import '@furo/ui5/src/furo-ui5-button.js';
 
 import '@ui5/webcomponents/dist/Title.js';
@@ -75,7 +74,7 @@ class ViewDetailTodos extends FBP(LitElement) {
           <ui5-shellbar-item
             id="search"
             icon="search"
-            @-item-click="--searchRequested"
+            @-click="--searchRequested"
           ></ui5-shellbar-item>
         </ui5-shellbar>
 
@@ -99,15 +98,15 @@ class ViewDetailTodos extends FBP(LitElement) {
             <!-- Read only card content -->
             <furo-ui5-card icon="task" heading="ToDo Item Detail">
               <furo-form-layouter two slot="content">
-                <furo-ui5-data-display
+                <furo-ui5-typerenderer-labeled
                   ƒ-bind-data="--daoToDoItem(*.data.id)"
-                ></furo-ui5-data-display>
-                <furo-ui5-data-display
+                ></furo-ui5-typerenderer-labeled>
+                <furo-ui5-typerenderer-labeled
                   ƒ-bind-data="--daoToDoItem(*.data.description)"
-                ></furo-ui5-data-display>
-                <furo-ui5-data-display
+                ></furo-ui5-typerenderer-labeled>
+                <furo-ui5-typerenderer-labeled
                   ƒ-bind-data="--daoToDoItem(*.data.due_date)"
-                ></furo-ui5-data-display>
+                ></furo-ui5-typerenderer-labeled>
               </furo-form-layouter>
             </furo-ui5-card>
           </furo-ui5-dynamic-page-layout>
