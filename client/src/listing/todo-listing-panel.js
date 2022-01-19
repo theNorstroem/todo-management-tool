@@ -9,9 +9,9 @@ import '@furo/ui5/src/furo-ui5-pagination-bar.js';
 import '@furo/ui5/src/furo-ui5-message-strip-display.js';
 import '@furo/ui5/src/furo-ui5-message-strip.js';
 
-import '../x/illustrated-messages/furo-ui5-illustrated-message.js';
-import '../x/illustrated-messages/illustrations/BeforeSearch.js';
-import '../x/illustrated-messages/illustrations/NoSearchResults.js';
+import '@ui5/webcomponents-fiori/dist/IllustratedMessage.js';
+import '@ui5/webcomponents-fiori/dist/illustrations/BeforeSearch.js';
+import '@ui5/webcomponents-fiori/dist/illustrations/NoSearchResults.js';
 import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 import './todo-search-resultset.js';
@@ -29,7 +29,6 @@ class TodoListingPanel extends FBP(LitElement) {
       :host {
         display: block;
       }
-
       :host([hidden]) {
         display: none;
       }
@@ -75,19 +74,20 @@ class TodoListingPanel extends FBP(LitElement) {
             <!-- we listen for "Enter" on the fields to trigger the search,
             but clearing and searching does not need to trigger again -->
             <furo-keydown key="Enter" stop-propagation></furo-keydown>
-            <furo-ui5-button design="Emphasized" ƒ-click="--EnterKeyPressed" @-click="--searchTriggered"
-            >List</furo-ui5-button
+            <furo-ui5-button
+              design="Emphasized"
+              ƒ-click="--EnterKeyPressed"
+              @-click="--searchTriggered"
+              >List</furo-ui5-button
             >
-            <furo-ui5-button design="Transparent" @-click="--resetTriggered"
-            >Clear</furo-ui5-button
-            >
+            <furo-ui5-button design="Transparent" @-click="--resetTriggered">Clear</furo-ui5-button>
           </furo-horizontal-flex>
         </furo-ui5-header-panel>
 
-        </furo-ui5-header-panel>
-
         <furo-ui5-dynamic-page-layout padding>
-          <furo-ui5-message-strip-display ƒ-clear-all="--resetTriggered"></furo-ui5-message-strip-display>
+          <furo-ui5-message-strip-display
+            ƒ-clear-all="--resetTriggered"
+          ></furo-ui5-message-strip-display>
           <furo-ui5-message-strip
             message="Sorry, the listing services are currently not available. We are working on it."
             ƒ-show-error="--err"
@@ -101,8 +101,14 @@ class TodoListingPanel extends FBP(LitElement) {
           default="BeforeSearch"
           ƒ-activate-page="--noSearchResults, --hasSearchResults, --initSearch"
         >
-          <ui5-illustrated-message name="BeforeSearch" title-text="Let's get some results" subtitle-text="Start by providing your search criteria.">
-            <furo-ui5-button icon="edit" @-click="--registerToDoRequested">Register new item</furo-ui5-button>
+          <ui5-illustrated-message
+            name="BeforeSearch"
+            title-text="Let's get some results"
+            subtitle-text="Start by providing your search criteria."
+          >
+            <furo-ui5-button icon="edit" @-click="--registerToDoRequested"
+              >Register new item</furo-ui5-button
+            >
           </ui5-illustrated-message>
 
           <todo-search-resultset
@@ -127,7 +133,6 @@ class TodoListingPanel extends FBP(LitElement) {
           >
             <furo-ui5-button @-click="--registerToDoRequested">Register new item</furo-ui5-button>
           </ui5-illustrated-message>
-
         </furo-pages>
 
         <!-- Provides HATEOAS based pagination functionality. -->
@@ -142,7 +147,10 @@ class TodoListingPanel extends FBP(LitElement) {
       </furo-vertical-flex>
 
       <!-- Application routing -->
-      <furo-app-flow event="flow-create-todo-requested" ƒ-emit="--registerToDoRequested"></furo-app-flow>
+      <furo-app-flow
+        event="flow-create-todo-requested"
+        ƒ-emit="--registerToDoRequested"
+      ></furo-app-flow>
     `;
   }
 }
