@@ -1,12 +1,18 @@
 import { LitElement, html, css } from 'lit';
 import { FBP } from '@furo/fbp';
-import './configs/init.js';
-import '@furo/config/src/furo-config-loader.js';
+
+// workaround for elements which do not like lazy loading
+import '@ui5/webcomponents/dist/Button.js';
+import '@ui5/webcomponents/dist/Assets.js';
+import '@ui5/webcomponents-localization/dist/Assets.js';
+import '@ui5/webcomponents-fiori/dist/Assets.js';
+import '@ui5/webcomponents-theming/dist/Assets.js';
+
+import '@furo/util/src/furo-config-loader.js';
 import '@furo/route/src/furo-app-flow-router.js';
 import '@furo/fbp/src/vizConnector.js';
 
-// ui5 components need the i18n stuff before they start.
-import('./configs/ui5Init.js').then(async () => {
+import('./configs/init.js').then(() => {
   import('./main-stage.js');
 });
 
@@ -26,7 +32,8 @@ class AppShell extends FBP(LitElement) {
     // language=CSS
     return css`
       :host {
-        --background: #f7f7f7;
+        --background: var(--sapBackgroundColor, #f7f7f7);
+        --on-background: var(--sapTextColor, #32363a);
 
         --spacing-xxs: 4px;
         --spacing-xs: 8px;
@@ -44,7 +51,20 @@ class AppShell extends FBP(LitElement) {
         display: block;
         overflow: hidden;
         height: 100vh;
-        color: var(--textColor, #32363a);
+        color: var(--sapTextColor, #32363a);
+
+        /* SAP Fiori */
+        --sapIllus_BrandColorPrimary: var(--sapContent_Illustrative_Color1);
+        --sapIllus_BrandColorSecondary: var(--sapContent_Illustrative_Color2);
+        --sapIllus_StrokeDetailColor: var(--sapContent_Illustrative_Color4);
+        --sapIllus_Layering1: var(--sapContent_Illustrative_Color5);
+        --sapIllus_Layering2: var(--sapContent_Illustrative_Color6);
+        --sapIllus_BackgroundColor: var(--sapContent_Illustrative_Color7);
+        --sapIllus_ObjectFillColor: var(--sapContent_Illustrative_Color8);
+        --sapIllus_AccentColor: var(--sapContent_Illustrative_Color3);
+        --sapIllus_NoColor: none;
+        --sapIllus_PatternShadow: url(#sapIllus_PatternShadow);
+        --sapIllus_PatternHighlight: url(#sapIllus_PatternHighlight);
       }
     `;
   }
@@ -81,7 +101,7 @@ class AppShell extends FBP(LitElement) {
         @-app-flow="--flowEvent"
       ></furo-app-flow>
       <furo-config-loader
-        src="src/configs/flowConfig.json"
+        src="src/configs/flowConfig.flow"
         section="flow"
         @-config-loaded="--flowConfigLoaded"
       ></furo-config-loader>

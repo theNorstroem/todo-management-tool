@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { FBP } from '@furo/fbp/src/fbp.js';
 
-import '@furo/ui5/src/furo-ui5-data-table.js';
+import '@furo/ui5/src/furo-ui5-table.js';
 
 import '@furo/data/src/furo-data-object.js';
 import '@furo/data/src/furo-deep-link.js';
@@ -59,9 +59,6 @@ export class TodoSearchResultset extends FBP(LitElement) {
         display: none;
       }
 
-      furo-ui5-busyindicator {
-        display: block;
-      }
     `;
   }
 
@@ -98,7 +95,7 @@ export class TodoSearchResultset extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-ui5-dynamic-page-layout padding>
-        <furo-ui5-data-table
+        <furo-ui5-table
           no-data-text="No data available"
           ƒ-bind-data="--collectionDao(*.entities)"
         >
@@ -110,7 +107,7 @@ export class TodoSearchResultset extends FBP(LitElement) {
             ><span>Due date</span></ui5-table-column
           >
           <ui5-table-column slot="columns" field="*.data.id"><span>Id</span></ui5-table-column>
-        </furo-ui5-data-table>
+        </furo-ui5-table>
       </furo-ui5-dynamic-page-layout>
 
       <!-- Creates HATEOAS links according the set specification. Required for DeepLinking. -->

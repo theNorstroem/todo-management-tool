@@ -47,22 +47,12 @@
 
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed') {
-                  const obj = {};
-                  obj.labelText = "New update installed.";
-                obj._action = () => {
-                  // reload page
-                    registration.unregister();
-                  window.location.reload();
 
-                };
-                obj.icon = "clear";
-                obj._dismiss = () => {
-                  console.log("closed without reload...")
-                };
-                  obj.actionButtonText = "restart";
-                  const customEvent = new Event("open-furo-snackbar-requested", {composed: true, bubbles: true});
-                customEvent.detail = obj;
-                this.dispatchEvent(customEvent);
+                  // eslint-disable-next-line no-alert
+                  if (window.confirm('New update installed.')) {
+                    registration.unregister();
+                    window.location.reload();
+                  }
                 }
               });
 

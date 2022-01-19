@@ -4,6 +4,11 @@
 - _Repository_: https://github.com/theNorstroem/todo-management-tool
 - _Furo Web Stack_: https://furo.pro/
 
+## ToDo Application
+![screenshot](assets/search_fiori_3.png "Screenshot default theme")
+![screenshot](assets/search_fiori_3_dark.png "Screenshot dark theme")
+
+
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 

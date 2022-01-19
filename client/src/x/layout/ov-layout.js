@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import { Theme } from '@furo/framework/src/theme.js';
 import { FBP } from '@furo/fbp';
 import '@furo/layout/src/furo-z-grid.js';
 import '@furo/layout/src/furo-split-grid.js';
@@ -30,7 +29,6 @@ class OvLayout extends FBP(LitElement) {
   static get styles() {
     // language=CSS
     return (
-      Theme.getThemeForComponent('OvLayout') ||
       css`
         :host {
           display: block;

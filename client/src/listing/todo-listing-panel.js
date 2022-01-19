@@ -9,9 +9,9 @@ import '@furo/ui5/src/furo-ui5-pagination-bar.js';
 import '@furo/ui5/src/furo-ui5-message-strip-display.js';
 import '@furo/ui5/src/furo-ui5-message-strip.js';
 
-import '../x/illustrated-messages/furo-ui5-illustrated-message.js';
-import '../x/illustrated-messages/illustrations/BeforeSearch.js';
-import '../x/illustrated-messages/illustrations/NoSearchResults.js';
+import '@ui5/webcomponents-fiori/dist/IllustratedMessage.js';
+import '@ui5/webcomponents-fiori/dist/illustrations/BeforeSearch.js';
+import '@ui5/webcomponents-fiori/dist/illustrations/NoSearchResults.js';
 import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 import './todo-search-resultset.js';
