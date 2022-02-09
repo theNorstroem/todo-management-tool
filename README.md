@@ -41,7 +41,7 @@ git checkout c01_todos_api_contract
 ## Local API Development
 
 ### Use local container build
-[Furo build environment docker container](https://github.com/theNorstroem/furoBEC)
+[Furo build environment docker container](https://github.com/eclipse/eclipsefuro/tree/main/BEC)
 
 https://hub.docker.com/r/thenorstroem/furo-bec
 
@@ -49,7 +49,7 @@ https://hub.docker.com/r/thenorstroem/furo-bec
 docker pull thenorstroem/furo-bec:v1.28.5
 ```
 
-Example Usage: docker run -it --rm -v $(pwd):$pwd/specs thenorstroem/furo-bec:v1.28.5
+Example Usage: docker run -it --rm -v `pwd`:/specs -v ~/.ssh:/root/.ssh thenorstroem/furo-bec:v1.28.5
 
 Commands: https://furo.pro/docs/commands/
 
