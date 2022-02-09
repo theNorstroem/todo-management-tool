@@ -8,11 +8,27 @@
 ![screenshot](assets/search_fiori_3.png "Screenshot default theme")
 ![screenshot](assets/search_fiori_3_dark.png "Screenshot dark theme")
 
+## System Prerequisites
+For this example to fly, the following software components should be installed on the system.
+- git, https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+- Docker, https://docs.docker.com/get-docker/
+- Go, https://go.dev/doc/install
+- NodeJS / npm, https://nodejs.org/en/download/
+
 
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> chapter 01: git checkout c01_todos_api_contract
+clone the repository: 
+``` 
+git clone git@github.com:theNorstroem/todo-management-tool.git 
+```
+
+checkout chapter 01: 
+```
+git checkout c01_todos_api_contract
+```
+
  
 ## Final Project Structure
 .
