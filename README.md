@@ -19,6 +19,10 @@ For this example to fly, the following software components should be installed o
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
+download the eBook:
+[eBook.pdf](./eBook.pdf) [eBook.epub](./eBook.epub)
+The e-book includes a usecase-driven guide through the chapters
+
 clone the repository: 
 ``` 
 git clone git@github.com:theNorstroem/todo-management-tool.git 
