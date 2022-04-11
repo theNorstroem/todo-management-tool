@@ -72,4 +72,4 @@ fields:
         constraints:
             required:
                 is: "true"
-                message: due_date is required
+                message: todos.item.duedate.constraints.required
