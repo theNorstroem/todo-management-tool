@@ -48,7 +48,10 @@ fields:
             readonly: false
             repeated: false
             typespecific: null
-        constraints: {}
+        constraints:
+            min:
+                is: "12"
+                message: todos.item.description.constraints.min
     due_date:
         type: google.type.Date
         description: Due date of the task
@@ -66,4 +69,7 @@ fields:
             readonly: false
             repeated: false
             typespecific: null
-        constraints: {}
+        constraints:
+            required:
+                is: "true"
+                message: due_date is required

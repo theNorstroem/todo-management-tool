@@ -19,15 +19,16 @@ import '@furo/ui5/src/furo-ui5-message-strip-display.js';
 import '@furo/ui5/src/furo-ui5-button.js';
 import '@furo/ui5/src/furo-ui5-date-picker-labeled.js';
 import '@furo/ui5/src/furo-ui5-textarea-input-labeled.js';
+import '@furo/ui5/src/furo-ui5-notification.js';
+import '@furo/ui5/src/furo-ui5-notification-list-display.js';
 
 import '@ui5/webcomponents/dist/Title.js';
 import '@ui5/webcomponents/dist/Toast.js';
+import '@ui5/webcomponents/dist/Popover.js';
 
 import '@ui5/webcomponents-fiori/dist/ShellBar.js';
 import '@ui5/webcomponents-fiori/dist/ShellBarItem.js';
 import '@ui5/webcomponents-fiori/dist/Bar.js';
-
-import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 /**
  * Purpose: Register a new ToDos Item
@@ -56,8 +57,12 @@ class ViewCreateTodos extends FBP(LitElement) {
         display: none;
       }
 
-      ui5-bar {
-        padding: 0.25rem 0;
+      .padding {
+        padding: var(--FuroUi5MediaSizeIndentation, 0.625rem 2rem 0 2rem);
+      }
+      .padding-lr {
+        padding-left: var(--FuroUi5MediaSizeIndentationLeft, 2rem);
+        padding-right: var(--FuroUi5MediaSizeIndentationRight, 2rem);
       }
     `;
   }
@@ -89,17 +94,17 @@ class ViewCreateTodos extends FBP(LitElement) {
         </furo-ui5-header-panel>
 
         <furo-vertical-flex flex>
-          <furo-ui5-dynamic-page-layout flex scroll padding>
-            <furo-form-layouter>
-              <!-- The message strip is a control that is used as an information bar. It contains information
+          <!-- The message strip is a control that is used as an information bar. It contains information
                    about an object or a status and can be embedded within the detail area of an object or page. -->
-              <furo-ui5-message-strip-display full></furo-ui5-message-strip-display>
-              <furo-ui5-message-strip
-                message="Sorry, the services for the Todo Management WebApp are currently not available. We are working on it."
-                ƒ-show-error="--badGateway, --fatalError"
-                ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
-              ></furo-ui5-message-strip>
+          <furo-ui5-message-strip-display class="padding-lr" full></furo-ui5-message-strip-display>
+          <furo-ui5-message-strip
+            message="Sorry, the services for the Todo Management WebApp are currently not available. We are working on it."
+            ƒ-show-error="--badGateway, --fatalError"
+            ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
+          ></furo-ui5-message-strip>
 
+          <div class="padding" flex scroll>
+            <furo-form-layouter>
               <!-- The ToDos register form -->
               <ui5-title level="H4" full>New Entry</ui5-title>
               <furo-ui5-textarea-input-labeled
@@ -110,16 +115,52 @@ class ViewCreateTodos extends FBP(LitElement) {
                 ƒ-bind-data="--daoToDoItem(*.data.due_date)"
               ></furo-ui5-date-picker-labeled>
             </furo-form-layouter>
-          </furo-ui5-dynamic-page-layout>
+          </div>
 
           <!-- The form action bar -->
           <ui5-bar design="Footer">
-            <furo-ui5-button design="Emphasized" slot="endContent" @-click="--registerRequested"
+            <furo-ui5-button
+              fn-enable="--grpcError, --daoInvalid"
+              fn-disable="--daoValidationRequested, --pageActivated"
+              design="Negative"
+              has-icon
+              icon="message-error"
+              at-click="--notificationsRequested(*.target)"
+              slot="startContent"
+              ><span>Errors</span></furo-ui5-button
+            >
+            <furo-ui5-button
+              design="Emphasized"
+              slot="endContent"
+              @-click="--daoValidationRequested"
               >Register
             </furo-ui5-button>
           </ui5-bar>
         </furo-vertical-flex>
       </furo-vertical-flex>
+
+      <!-- Notification List Popover
+                   gRPC Errors, localized Messages
+                   The popover notification component can be opened by
+                   the notification icon in the shellbar or by the error
+                   button if you use a form.
+              -->
+      <ui5-popover fn-show-at="--notificationsRequested" placement-type="top">
+        <div class="popover-content">
+          <!-- gRPC Error Handling, display and creator components-->
+          <furo-ui5-notification-list-display
+            header-text="Notifications &amp; Errors"
+            group-title-bad-request="Field Violations"
+            fn-clear-all="--daoValidationRequested"
+          ></furo-ui5-notification-list-display>
+
+          <furo-ui5-notification
+            fn-parse-grpc-status="--grpcError"
+            fn-parse-field-validity-messages="--daoInvalid"
+          ></furo-ui5-notification>
+        </div>
+        <div slot="footer" class="popover-footer"></div>
+      </ui5-popover>
 
       <!-- A message toast is a small, non-disruptive popup for success messages that disappears automatically after a few seconds.-->
       <ui5-toast ƒ-show="--saveOK" duration="2500">New ToDo item stored.</ui5-toast>
@@ -129,6 +170,9 @@ class ViewCreateTodos extends FBP(LitElement) {
         type="todos.ItemEntity"
         @-object-ready="--daoToDoItem"
         ƒ-init="--pageActivated, --saveOK"
+        fn-validate-all-fields="--daoValidationRequested"
+        at-validation-success="--daoValid"
+        at-validation-failed="--daoInvalid(*.detail.field_violations)"
       ></furo-data-object>
 
       <!-- resolves hateoas links -->
@@ -142,7 +186,7 @@ class ViewCreateTodos extends FBP(LitElement) {
       <furo-entity-agent
         service="TodosService"
         ƒ-hts-in="--htsOut"
-        ƒ-create="--registerRequested"
+        ƒ-create="--daoValid"
         ƒ-bind-request-data="--daoToDoItem(*.data)"
         @-response="--saveOK"
         @-response-error-400="--grpcError"

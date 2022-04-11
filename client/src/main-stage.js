@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { FBP } from '@furo/fbp';
+import { MediaSize } from '@furo/ui5/src/lib/MediaSize.js';
 
 /**
  * Registration of standard display/cell/celledit renderers
@@ -31,6 +32,18 @@ import '@furo/ui5/src/furo-ui5-dialog-display.js';
 class MainStage extends FBP(LitElement) {
   _FBPReady() {
     super._FBPReady();
+
+    /**
+     * Responsive spacing system
+     */
+    window.addEventListener(
+      'resize',
+      MediaSize.DebounceBuilder(() => {
+        this.setAttribute('media-size', MediaSize.GetMediaSize());
+      }, MediaSize.HANDLE_RESIZE_DEBOUNCE_RATE),
+    );
+    // initial size
+    this.setAttribute('media-size', MediaSize.GetMediaSize());
   }
 
   /**
@@ -48,6 +61,46 @@ class MainStage extends FBP(LitElement) {
         color: var(--on-background);
         font-family: var(--sapFontFamily, '72'), '72full', Arial, Helvetica, sans-serif;
         font-size: var(--sapFontSize);
+      }
+
+      :host([media-size='XXL']) {
+        --FuroUi5MediaSizeIndentation: 2rem 3rem 1rem 3rem;
+        --FuroUi5MediaSizeIndentationTop: 2rem;
+        --FuroUi5MediaSizeIndentationRight: 3rem;
+        --FuroUi5MediaSizeIndentationBottom: 1;
+        --FuroUi5MediaSizeIndentationLeft: 3rem;
+      }
+
+      :host([media-size='XL']) {
+        --FuroUi5MediaSizeIndentation: 2rem 3rem 1rem 3rem;
+        --FuroUi5MediaSizeIndentationTop: 2rem;
+        --FuroUi5MediaSizeIndentationRight: 3rem;
+        --FuroUi5MediaSizeIndentationBottom: 1;
+        --FuroUi5MediaSizeIndentationLeft: 3rem;
+      }
+
+      :host([media-size='L']) {
+        --FuroUi5MediaSizeIndentation: 1rem 2rem 0 2rem;
+        --FuroUi5MediaSizeIndentationTop: 1rem;
+        --FuroUi5MediaSizeIndentationRight: 2rem;
+        --FuroUi5MediaSizeIndentationBottom: 0;
+        --FuroUi5MediaSizeIndentationLeft: 2rem;
+      }
+
+      :host([media-size='M']) {
+        --FuroUi5MediaSizeIndentation: 0.625rem 2rem 0 2rem;
+        --FuroUi5MediaSizeIndentationTop: 0.625rem;
+        --FuroUi5MediaSizeIndentationRight: 2rem;
+        --FuroUi5MediaSizeIndentationBottom: 0;
+        --FuroUi5MediaSizeIndentationLeft: 2rem;
+      }
+
+      :host([media-size='S']) {
+        --FuroUi5MediaSizeIndentation: 0.625rem 1rem 0 1rem;
+        --FuroUi5MediaSizeIndentationTop: 0.625rem;
+        --FuroUi5MediaSizeIndentationRight: 1rem;
+        --FuroUi5MediaSizeIndentationBottom: 0;
+        --FuroUi5MediaSizeIndentationLeft: 1rem;
       }
 
       furo-pages {

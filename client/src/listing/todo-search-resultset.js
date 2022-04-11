@@ -7,8 +7,6 @@ import '@furo/data/src/furo-data-object.js';
 import '@furo/data/src/furo-deep-link.js';
 import '@furo/data/src/furo-collection-agent.js';
 
-import '../x/layout/furo-ui5-dynamic-page-layout.js';
-
 /**
  * Todos searcher component with result set
  *
@@ -59,6 +57,9 @@ export class TodoSearchResultset extends FBP(LitElement) {
         display: none;
       }
 
+      .padding {
+        padding: var(--FuroUi5MediaSizeIndentation, 0.625rem 2rem 0 2rem);
+      }
     `;
   }
 
@@ -94,21 +95,24 @@ export class TodoSearchResultset extends FBP(LitElement) {
   render() {
     // language=HTML
     return html`
-      <furo-ui5-dynamic-page-layout padding>
-        <furo-ui5-table
-          no-data-text="No data available"
-          ƒ-bind-data="--collectionDao(*.entities)"
+      <furo-ui5-table
+        class="padding"
+        mode="SingleSelect"
+        no-data-text="No data available"
+        ƒ-bind-data="--collectionDao(*.entities)"
+      >
+        <ui5-table-column slot="columns" min-width="320" demand-popin field="*.data.description"
+          ><span>Description</span></ui5-table-column
         >
-          <ui5-table-column slot="columns" min-width="320" demand-popin field="*.data.description"
-            ><span>Description</span></ui5-table-column
-          >
 
-          <ui5-table-column slot="columns" field="*.data.due_date"
-            ><span>Due date</span></ui5-table-column
-          >
-          <ui5-table-column slot="columns" field="*.data.id"><span>Id</span></ui5-table-column>
-        </furo-ui5-table>
-      </furo-ui5-dynamic-page-layout>
+        <ui5-table-column
+          slot="columns"
+          field="*.data.due_date"
+          renderer="furo-ui5-relative-time-badge"
+          ><span>Due date</span></ui5-table-column
+        >
+        <ui5-table-column slot="columns" field="*.data.id"><span>Id</span></ui5-table-column>
+      </furo-ui5-table>
 
       <!-- Creates HATEOAS links according the set specification. Required for DeepLinking. -->
       <furo-deep-link
@@ -118,7 +122,7 @@ export class TodoSearchResultset extends FBP(LitElement) {
       ></furo-deep-link>
 
       <!-- API communication component. Required to handle collections.
-      The search-hts-updated event will be catched in the view and passed down to the pagination bar
+      The search-hts-updated event will be caught in the view and passed down to the pagination bar
       -->
       <furo-collection-agent
         service="TodosService"

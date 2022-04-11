@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { FBP } from '@furo/fbp/src/fbp.js';
 
 import '@furo/layout/src/furo-vertical-flex.js';
@@ -12,7 +12,6 @@ import '@furo/ui5/src/furo-ui5-message-strip.js';
 import '@ui5/webcomponents-fiori/dist/IllustratedMessage.js';
 import '@ui5/webcomponents-fiori/dist/illustrations/BeforeSearch.js';
 import '@ui5/webcomponents-fiori/dist/illustrations/NoSearchResults.js';
-import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 import './todo-search-resultset.js';
 
@@ -32,6 +31,11 @@ class TodoListingPanel extends FBP(LitElement) {
 
       :host([hidden]) {
         display: none;
+      }
+
+      .padding-lr {
+        padding-left: var(--FuroUi5MediaSizeIndentationLeft, 2rem);
+        padding-right: var(--FuroUi5MediaSizeIndentationRight, 2rem);
       }
     `;
   }
@@ -76,24 +80,25 @@ class TodoListingPanel extends FBP(LitElement) {
             but clearing and searching does not need to trigger again -->
             <furo-keydown key="Enter" stop-propagation></furo-keydown>
             <furo-ui5-button design="Emphasized" ƒ-click="--EnterKeyPressed" @-click="--searchTriggered"
-            >List</furo-ui5-button
+            >List
+            </furo-ui5-button
             >
             <furo-ui5-button design="Transparent" @-click="--resetTriggered"
-            >Clear</furo-ui5-button
+            >Clear
+            </furo-ui5-button
             >
           </furo-horizontal-flex>
         </furo-ui5-header-panel>
 
         </furo-ui5-header-panel>
 
-        <furo-ui5-dynamic-page-layout padding>
-          <furo-ui5-message-strip-display ƒ-clear-all="--resetTriggered"></furo-ui5-message-strip-display>
-          <furo-ui5-message-strip
-            message="Sorry, the listing services are currently not available. We are working on it."
-            ƒ-show-error="--err"
-            ƒ-show-grpc-localized-message="--grpcError"
-          ></furo-ui5-message-strip>
-        </furo-ui5-dynamic-page-layout>
+        <furo-ui5-message-strip-display class="padding-lr"
+                                        ƒ-clear-all="--resetTriggered"></furo-ui5-message-strip-display>
+        <furo-ui5-message-strip
+          message="Sorry, the listing services are currently not available. We are working on it."
+          ƒ-show-error="--err"
+          ƒ-show-grpc-localized-message="--grpcError"
+        ></furo-ui5-message-strip>
 
         <furo-pages
           flex
@@ -101,7 +106,8 @@ class TodoListingPanel extends FBP(LitElement) {
           default="BeforeSearch"
           ƒ-activate-page="--noSearchResults, --hasSearchResults, --initSearch"
         >
-          <ui5-illustrated-message name="BeforeSearch" title-text="Let's get some results" subtitle-text="Start by providing your search criteria.">
+          <ui5-illustrated-message name="BeforeSearch" title-text="Let's get some results"
+                                   subtitle-text="Start by providing your search criteria.">
             <furo-ui5-button icon="edit" @-click="--registerToDoRequested">Register new item</furo-ui5-button>
           </ui5-illustrated-message>
 
