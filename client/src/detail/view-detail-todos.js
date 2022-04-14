@@ -16,16 +16,15 @@ import '@furo/data/src/furo-data-object.js';
 import '@furo/ui5/src/furo-ui5-header-panel.js';
 import '@furo/ui5/src/furo-ui5-message-strip.js';
 import '@furo/ui5/src/furo-ui5-message-strip-display.js';
-import '@furo/ui5/src/furo-ui5-card.js';
 import '@furo/ui5/src/furo-ui5-typerenderer-labeled.js';
 import '@furo/ui5/src/furo-ui5-button.js';
+import '@furo/ui5/src/furo-ui5-section.js';
+import '@furo/ui5/src/furo-ui5-subsection.js';
 
 import '@ui5/webcomponents/dist/Title.js';
 
 import '@ui5/webcomponents-fiori/dist/ShellBar.js';
 import '@ui5/webcomponents-fiori/dist/ShellBarItem.js';
-
-import '../x/layout/furo-ui5-dynamic-page-layout.js';
 
 /**
  * Purpose: Display detail of a ToDos item
@@ -54,8 +53,13 @@ class ViewDetailTodos extends FBP(LitElement) {
         display: none;
       }
 
-      ui5-bar {
-        padding: 0.25rem 0;
+      .padding {
+        padding: var(--FuroUi5MediaSizeIndentation, 0.625rem 2rem 0 2rem);
+      }
+
+      .padding-lr {
+        padding-left: var(--FuroUi5MediaSizeIndentationLeft, 2rem);
+        padding-right: var(--FuroUi5MediaSizeIndentationRight, 2rem);
       }
     `;
   }
@@ -84,20 +88,19 @@ class ViewDetailTodos extends FBP(LitElement) {
           >
         </furo-ui5-header-panel>
 
-        <furo-vertical-flex flex>
-          <furo-ui5-dynamic-page-layout flex scroll padding>
-            <!-- The message strip is a control that is used as an information bar. It contains information
+        <!-- The message strip is a control that is used as an information bar. It contains information
                    about an object or a status and can be embedded within the detail area of an object or page. -->
-            <furo-ui5-message-strip-display full></furo-ui5-message-strip-display>
-            <furo-ui5-message-strip
-              message="Sorry, the GetTodo services are currently not available. We are working on it."
-              ƒ-show-error="--badGateway, --fatalError"
-              ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
-            ></furo-ui5-message-strip>
+        <furo-ui5-message-strip-display class="padding-lr"></furo-ui5-message-strip-display>
+        <furo-ui5-message-strip
+          message="Sorry, the GetTodo services are currently not available. We are working on it."
+          ƒ-show-error="--badGateway, --fatalError"
+          ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
+        ></furo-ui5-message-strip>
 
-            <!-- Read only card content -->
-            <furo-ui5-card icon="task" heading="ToDo Item Detail">
-              <furo-form-layouter two slot="content">
+        <furo-vertical-flex flex>
+          <furo-ui5-section flex scroll>
+            <furo-ui5-subsection heading="ToDo Item Detail">
+              <furo-form-layouter two>
                 <furo-ui5-typerenderer-labeled
                   ƒ-bind-data="--daoToDoItem(*.data.id)"
                 ></furo-ui5-typerenderer-labeled>
@@ -108,8 +111,8 @@ class ViewDetailTodos extends FBP(LitElement) {
                   ƒ-bind-data="--daoToDoItem(*.data.due_date)"
                 ></furo-ui5-typerenderer-labeled>
               </furo-form-layouter>
-            </furo-ui5-card>
-          </furo-ui5-dynamic-page-layout>
+            </furo-ui5-subsection>
+          </furo-ui5-section>
         </furo-vertical-flex>
       </furo-vertical-flex>
 

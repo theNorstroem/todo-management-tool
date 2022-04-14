@@ -16,6 +16,8 @@ import '@furo/ui5/src/furo-ui5-header-panel.js';
 import '@furo/ui5/src/furo-ui5-typerenderer-labeled.js';
 import '@furo/ui5/src/furo-ui5-message-strip.js';
 import '@furo/ui5/src/furo-ui5-message-strip-display.js';
+import '@furo/ui5/src/furo-ui5-section.js';
+import '@furo/ui5/src/furo-ui5-subsection.js';
 import '@furo/ui5/src/furo-ui5-button.js';
 import '@furo/ui5/src/furo-ui5-date-picker-labeled.js';
 import '@furo/ui5/src/furo-ui5-textarea-input-labeled.js';
@@ -60,6 +62,7 @@ class ViewCreateTodos extends FBP(LitElement) {
       .padding {
         padding: var(--FuroUi5MediaSizeIndentation, 0.625rem 2rem 0 2rem);
       }
+
       .padding-lr {
         padding-left: var(--FuroUi5MediaSizeIndentationLeft, 2rem);
         padding-right: var(--FuroUi5MediaSizeIndentationRight, 2rem);
@@ -93,29 +96,29 @@ class ViewCreateTodos extends FBP(LitElement) {
         >
         </furo-ui5-header-panel>
 
-        <furo-vertical-flex flex>
-          <!-- The message strip is a control that is used as an information bar. It contains information
+        <!-- The message strip is a control that is used as an information bar. It contains information
                    about an object or a status and can be embedded within the detail area of an object or page. -->
-          <furo-ui5-message-strip-display class="padding-lr" full></furo-ui5-message-strip-display>
-          <furo-ui5-message-strip
-            message="Sorry, the services for the Todo Management WebApp are currently not available. We are working on it."
-            ƒ-show-error="--badGateway, --fatalError"
-            ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
-          ></furo-ui5-message-strip>
+        <furo-ui5-message-strip-display class="padding-lr"></furo-ui5-message-strip-display>
+        <furo-ui5-message-strip
+          message="Sorry, the services for the Todo Management WebApp are currently not available. We are working on it."
+          ƒ-show-error="--badGateway, --fatalError"
+          ƒ-show-grpc-localized-message="--notImplemented, --grpcError"
+        ></furo-ui5-message-strip>
 
-          <div class="padding" flex scroll>
-            <furo-form-layouter>
-              <!-- The ToDos register form -->
-              <ui5-title level="H4" full>New Entry</ui5-title>
-              <furo-ui5-textarea-input-labeled
-                ƒ-focus="--saveOK"
-                ƒ-bind-data="--daoToDoItem(*.data.description)"
-              ></furo-ui5-textarea-input-labeled>
-              <furo-ui5-date-picker-labeled
-                ƒ-bind-data="--daoToDoItem(*.data.due_date)"
-              ></furo-ui5-date-picker-labeled>
-            </furo-form-layouter>
-          </div>
+        <furo-vertical-flex flex>
+          <furo-ui5-section flex scroll>
+            <furo-ui5-subsection heading="New Entry">
+              <furo-form-layouter>
+                <furo-ui5-textarea-input-labeled
+                  ƒ-focus="--saveOK"
+                  ƒ-bind-data="--daoToDoItem(*.data.description)"
+                ></furo-ui5-textarea-input-labeled>
+                <furo-ui5-date-picker-labeled
+                  ƒ-bind-data="--daoToDoItem(*.data.due_date)"
+                ></furo-ui5-date-picker-labeled>
+              </furo-form-layouter>
+            </furo-ui5-subsection>
+          </furo-ui5-section>
 
           <!-- The form action bar -->
           <ui5-bar design="Footer">
