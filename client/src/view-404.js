@@ -6,7 +6,7 @@ import '@furo/layout/src/furo-vertical-flex.js';
 import '@ui5/webcomponents-fiori/dist/ShellBar.js';
 
 import '@ui5/webcomponents-fiori/dist/IllustratedMessage.js';
-import '@ui5/webcomponents-fiori/dist/illustrations/tnt/NoApplications.js';
+import '@ui5/webcomponents-fiori/dist/illustrations/PageNotFound.js';
 /**
  * `view-404`
  * Message pages give feedback to the user when an app or list is empty, or when an error has occurred.
@@ -33,18 +33,16 @@ class View404 extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return (
-      css`
-        :host {
-          display: block;
-          height: 100%;
-        }
+    return css`
+      :host {
+        display: block;
+        height: 100%;
+      }
 
-        :host([hidden]) {
-          display: none;
-        }
-      `
-    );
+      :host([hidden]) {
+        display: none;
+      }
+    `;
   }
 
   /**
@@ -56,17 +54,12 @@ class View404 extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-vertical-flex>
-        <ui5-shellbar
-          primary-title="ToDo Management Tool"
-          secondary-title="Page not found"
-        >
+        <ui5-shellbar primary-title="ToDo Management Tool" secondary-title="Page not found">
           <ui5-button icon="nav-back" slot="startButton" @-click="--historyBack"></ui5-button>
         </ui5-shellbar>
 
-        <ui5-illustrated-message flex scroll name="TntNoApplications" title="Page not found">
-          <furo-ui5-button design="Emphasized" @-click="--historyBack"
-          >back</furo-ui5-button
-          >
+        <ui5-illustrated-message flex scroll name="PageNotFound" title="Page not found">
+          <furo-ui5-button design="Emphasized" @-click="--historyBack">back</furo-ui5-button>
         </ui5-illustrated-message>
       </furo-vertical-flex>
 

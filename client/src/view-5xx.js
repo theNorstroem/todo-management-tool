@@ -33,18 +33,16 @@ class View5xx extends FBP(LitElement) {
    */
   static get styles() {
     // language=CSS
-    return (
-      css`
-        :host {
-          display: block;
-          height: 100%;
-        }
+    return css`
+      :host {
+        display: block;
+        height: 100%;
+      }
 
-        :host([hidden]) {
-          display: none;
-        }
-      `
-    );
+      :host([hidden]) {
+        display: none;
+      }
+    `;
   }
 
   /**
