@@ -102,7 +102,7 @@ class ViewUpdateTodos extends FBP(LitElement) {
             <furo-ui5-subsection heading="Update Entry">
               <furo-form-layouter>
                 <!-- The ToDos register form -->
-                <furo-ui5-textarea-input-labeled
+                <furo-ui5-textarea-input-labeled ƒ-focus="--pageActivated"
                   ƒ-bind-data="--daoToDoItem(*.data.description)"
                 ></furo-ui5-textarea-input-labeled>
                 <furo-ui5-date-picker-labeled
@@ -115,7 +115,10 @@ class ViewUpdateTodos extends FBP(LitElement) {
           <!-- The action bar -->
           <ui5-bar design="Footer">
             <furo-ui5-button design="Emphasized" slot="endContent" @-click="--registerRequested"
-              >Update
+              >Save
+            </furo-ui5-button>
+            <furo-ui5-button slot="endContent" @-click="--cancelRequested"
+            >Cancel
             </furo-ui5-button>
           </ui5-bar>
         </furo-vertical-flex>
@@ -162,6 +165,7 @@ class ViewUpdateTodos extends FBP(LitElement) {
 
       <!-- Application routing -->
       <furo-app-flow ƒ-emit="--searchRequested" event="flow-todo-list-requested"></furo-app-flow>
+      <furo-app-flow ƒ-emit="--cancelRequested" event="history-back"></furo-app-flow>
     `;
   }
 }
