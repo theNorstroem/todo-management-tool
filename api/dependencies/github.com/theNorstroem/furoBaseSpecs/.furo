@@ -15,11 +15,13 @@ muSpec:
 commands:
   publishNpm: "scripts/test.sh"
   buildPb: "scripts/buildPb.sh"
+  cleandist: "scripts/cleanupDist.sh"
 flows:
   default:
     - genMessageProtos #we only have messages
     - buildPb
     - genEsModule
+    - cleandist
 build:
   proto:
     targetDir: "dist/proto" #Hint: add this to your proto include path

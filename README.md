@@ -26,10 +26,10 @@ Peter moved all the content of his api contract to the new folder `api`.
 https://hub.docker.com/r/thenorstroem/furo-bec
 
 ```shell script
-docker pull thenorstroem/furo-bec:v1.28.5
+docker pull thenorstroem/furo-bec:v1.35.1
 ```
 
-Example Usage: docker run -it --rm -v $(pwd):$pwd/specs thenorstroem/furo-bec:v1.28.5
+Example Usage: docker run -it --rm -v $(pwd):$pwd/specs -v ~/.ssh:/root/.ssh thenorstroem/furo-bec:v1.35.1
 
 Commands: https://furo.pro/docs/commands/
 
@@ -73,7 +73,7 @@ All the gRPC gateway code is located in the subfolder `/api/dist/grpc-gateway`.
 
 ```
 cd api
-go run ./...
+GW_SERVER_ADDRESS=localhost:8481 GRPC_SERVER_ADDRESS=localhost:7070 go run ./...
 ```
 
 or with the built version

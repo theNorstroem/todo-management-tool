@@ -1,10 +1,10 @@
-furo: "1.28.5"
+furo: "1.35.0"
 module: "github.com/theNorstroem/todo-management-tool/api"
 version: "0.0.1"
 specDir: "./specs"
 specFormat: "yaml" #set to yaml or json
 dependencies:
-  - "https://github.com/theNorstroem/furoBaseSpecs.git v1.27.1" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
+  - "https://github.com/theNorstroem/furoBaseSpecs.git v1.28.2" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
 dependenciesDir: dependencies
 muSpec:
   types:
@@ -16,6 +16,8 @@ muSpec:
   goPackageBase: "github.com/theNorstroem/todo-management-tool/api/dist/pb/" #this is used to prefix the go package option (with trailing slash) e.g. com.github/xxx/xxx-spec/dist/pb/
   javaPackagePrefix: "com.github.thenorstroem.todo.management.api." #com.github.xxx.bff. (with trailing dot)
   dir: "muspecs"
+  forceSync: true # This will delete specs which are deleted in muSpec, this is very useful during prototyping
+  requestTypeSuffix: "Request" # Suffix for the generated request types
 commands: #camelCase is not allowed, command scripts can only be executed from a flow
   gen_protoc_commands: "./scripts/protoc/protoc.sh"
   gen_transcoder: "./scripts/grpcgateway/gateway.sh"
