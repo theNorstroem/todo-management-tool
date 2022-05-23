@@ -34,7 +34,6 @@ class AppShell extends FBP(LitElement) {
       :host {
         --background: var(--sapBackgroundColor, #f7f7f7);
         --on-background: var(--sapTextColor, #32363a);
-
         --spacing-xxs: 4px;
         --spacing-xs: 8px;
         --spacing-s: 16px;
@@ -43,16 +42,13 @@ class AppShell extends FBP(LitElement) {
         --spacing-l: 32px;
         --spacing-xl: 40px;
         --spacing-xxl: 96px;
-
         --furo-form-layouter-row-gap: var(--spacing-s, 16px);
         --furo-form-layouter-column-gap: var(--spacing-s, 16px);
         --furo-ui5-form-field-container-grid-row-gap: var(--spacing-xs, 8px);
-
         display: block;
         overflow: hidden;
         height: 100vh;
         color: var(--sapTextColor, #32363a);
-
         /* SAP Fiori */
         --sapIllus_BrandColorPrimary: var(--sapContent_Illustrative_Color1);
         --sapIllus_BrandColorSecondary: var(--sapContent_Illustrative_Color2);
@@ -65,6 +61,7 @@ class AppShell extends FBP(LitElement) {
         --sapIllus_NoColor: none;
         --sapIllus_PatternShadow: url(#sapIllus_PatternShadow);
         --sapIllus_PatternHighlight: url(#sapIllus_PatternHighlight);
+
       }
     `;
   }
@@ -83,7 +80,6 @@ class AppShell extends FBP(LitElement) {
         @-unauthorized="--unauthorized"
         @-navigate-back-clicked="--navBack"
       ></main-stage>
-
       <furo-app-flow-router
         url-space-regex="^${window.APPROOT}"
         ƒ-.config="--flowConfigLoaded"
