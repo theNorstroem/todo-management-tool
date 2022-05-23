@@ -1,14 +1,40 @@
 # Creating an enterprise-flavoured ToDo application from scratch with the Furo Web Stack
 
+- _eBook_: [eBook.pdf](./eBook.pdf) [eBook.epub](./eBook.epub)
 - _Repository_: https://github.com/theNorstroem/todo-management-tool
 - _Furo Web Stack_: https://furo.pro/
+
+## ToDo Application
+![screenshot](assets/search_fiori_3.png "Screenshot default theme")
+![screenshot](assets/search_fiori_3_dark.png "Screenshot dark theme")
+
+## System Prerequisites
+For this example to fly, the following software components should be installed on the system.
+- git, https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+- Docker, https://docs.docker.com/get-docker/
+- Go, https://go.dev/doc/install
+- NodeJS / npm, https://nodejs.org/en/download/
+
 
 ## Getting Started
 We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a basic knowledge of Protocol Buffers. Experiences in Go is also a plus. But don’t worry, you don’t have to be an expert.
 
-> chapter 07: git checkout c07_field_validation
+download the eBook:
+[eBook.pdf](./eBook.pdf) [eBook.epub](./eBook.epub)
+The e-book includes a usecase-driven guide through the chapters
+
+clone the repository: 
+``` 
+git clone git@github.com:theNorstroem/todo-management-tool.git 
+```
+
+checkout chapter 01: 
+```
+git checkout c01_todos_api_contract
+```
+
  
-## Project Structure
+## Final Project Structure
 .
 |-- LICENSE
 |-- README.md
