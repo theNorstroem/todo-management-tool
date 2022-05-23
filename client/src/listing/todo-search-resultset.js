@@ -94,7 +94,7 @@ export class TodoSearchResultset extends FBP(LitElement) {
     // language=HTML
     return html`
       <furo-ui5-dynamic-page-layout padding>
-        <furo-ui5-table no-data-text="No data available" ƒ-bind-data="--collectionDao(*.entities)">
+        <furo-ui5-table mode="SingleSelect" no-data-text="No data available" ƒ-bind-data="--collectionDao(*.entities)">
           <ui5-table-column slot="columns" min-width="320" demand-popin field="*.data.description"
             ><span>Description</span></ui5-table-column
           >
