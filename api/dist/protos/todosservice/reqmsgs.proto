@@ -6,6 +6,7 @@ option java_multiple_files = true;
 option java_outer_classname = "ReqmsgsProto";
 option java_package = "com.github.thenorstroem.todo.management.bff.todosservice";
 
+import "google/protobuf/empty.proto";
 import "todos/todos.proto";
 
 
@@ -14,4 +15,31 @@ message CreateTodoRequest {
 
     // Body with todos.Item
     .todos.Item body = 1;
+}
+
+// request message for GetTodo
+message GetTodoRequest {  
+
+    // Body with google.protobuf.Empty
+    .google.protobuf.Empty body = 1;
+
+    // The query param **tdi** stands for the item id.
+    string tdi = 2;
+}
+
+// request message for ListTodos
+message ListTodosRequest {  
+
+    // Body with google.protobuf.Empty
+    .google.protobuf.Empty body = 1;
+}
+
+// request message for UpdateTodo
+message UpdateTodoRequest {  
+
+    // Body with todos.Item
+    .todos.Item body = 1;
+
+    // The query param **tdi** stands for the item id.
+    string tdi = 2;
 }

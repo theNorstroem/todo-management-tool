@@ -122,7 +122,7 @@ const urlParams = new URLSearchParams(queryString);
  * UI language
  * @type {string|string}
  */
-let locale = urlParams.get('sap-ui-language') || 'en';
+let locale = urlParams.get('sap-ui-language') || navigator.language || 'en';
 Env.locale = locale;
 
 /**

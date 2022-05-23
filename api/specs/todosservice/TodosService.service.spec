@@ -9,6 +9,7 @@ __proto:
         - google/api/annotations.proto
         - todosservice/reqmsgs.proto
         - todos/todos.proto
+        - google/protobuf/empty.proto
     options:
         go_package: github.com/theNorstroem/todo-management-tool/dist/pb/todosservice;todosservicepb
         java_multiple_files: "true"
@@ -28,3 +29,52 @@ services:
             rel: create
         query: {}
         rpc_name: CreateTodo
+    List:
+        description: The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
+        data:
+            request: google.protobuf.Empty
+            response: todos.ItemEntity
+            bodyfield: body
+        deeplink:
+            description: 'List: GET /todos google.protobuf.Empty, todos.ItemEntity #The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.'
+            href: /todos
+            method: GET
+            rel: list
+        query: {}
+        rpc_name: ListTodos
+    Get:
+        description: The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
+        data:
+            request: google.protobuf.Empty
+            response: todos.ItemEntity
+            bodyfield: body
+        deeplink:
+            description: 'Get: GET /todos/{tdi} google.protobuf.Empty, todos.ItemEntity #The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item'
+            href: /todos/{tdi}
+            method: GET
+            rel: self
+        query:
+            tdi:
+                constraints: {}
+                description: The query param **tdi** stands for the item id.
+                meta: null
+                type: string
+        rpc_name: GetTodo
+    Update:
+        description: The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
+        data:
+            request: todos.Item
+            response: todos.ItemEntity
+            bodyfield: body
+        deeplink:
+            description: 'Update: PATCH /todos/{tdi} todos.Item, todos.ItemEntity #The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item'
+            href: /todos/{tdi}
+            method: PATCH
+            rel: update
+        query:
+            tdi:
+                constraints: {}
+                description: The query param **tdi** stands for the item id.
+                meta: null
+                type: string
+        rpc_name: UpdateTodo

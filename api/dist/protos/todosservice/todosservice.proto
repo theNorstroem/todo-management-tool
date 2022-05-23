@@ -8,6 +8,7 @@ option java_outer_classname = "TodosserviceProto";
 option java_package = "com.github.thenorstroem.todo.management.bff.todosservice";
 
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 import "todos/todos.proto";
 import "todosservice/reqmsgs.proto";
 
@@ -18,10 +19,41 @@ service TodosService {
   // Adds a new ToDos item to the ToDos list
   rpc CreateTodo (CreateTodoRequest) returns (todos.ItemEntity){
 	//Create: POST /todos todos.Item, todos.ItemEntity #Adds a new ToDos item to the ToDos list
-	option (google.api.http) = {
-		post: "/todos"
-		body: "body"
-	};
+    option (google.api.http) = {
+        post: "/todos"
+        body: "body"
+    };
+
+  }
+
+  // The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
+  rpc GetTodo (GetTodoRequest) returns (todos.ItemEntity){
+	//Get: GET /todos/{tdi} google.protobuf.Empty, todos.ItemEntity #The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
+    option (google.api.http) = {
+        get: "/todos/{tdi}"
+        
+    };
+
+  }
+
+  // The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
+  rpc ListTodos (ListTodosRequest) returns (todos.ItemEntity){
+	//List: GET /todos google.protobuf.Empty, todos.ItemEntity #The List method takes zero or more parameters as input, and returns a todos.ItemCollection of todos.ItemEntity that match the input parameters.
+    option (google.api.http) = {
+        get: "/todos"
+        
+    };
+
+  }
+
+  // The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
+  rpc UpdateTodo (UpdateTodoRequest) returns (todos.ItemEntity){
+	//Update: PATCH /todos/{tdi} todos.Item, todos.ItemEntity #The Get method takes zero or more parameters, and returns a todos.ItemEntity which contains a todos.Item
+    option (google.api.http) = {
+        patch: "/todos/{tdi}"
+        body: "body"
+    };
+
   }
 
 }

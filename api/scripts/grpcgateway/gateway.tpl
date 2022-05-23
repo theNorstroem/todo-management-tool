@@ -10,6 +10,7 @@ import (
     "github.com/opentracing/opentracing-go/ext"
     "github.com/rs/zerolog"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -22,17 +23,27 @@ import (
 
 var grpcGatewayTag = opentracing.Tag{Key: string(ext.Component), Value: "grpc-gateway"}
 
-// header für client ohne prefixes
+// headers direction client without prefix
 func outgoingMatcher(headerName string) (mdName string, ok bool) {
 	return headerName, true
 }
 
-// header vom client im ctx des Servers ohne prefixes senden
+// headers direction server without prefix
 func incomingMatcher(headerName string) (mdName string, ok bool) {
-	return headerName, true
+	if strings.EqualFold(headerName, "content-length") {
+    	return headerName, false
+    }
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection
+    if strings.EqualFold(headerName, "connection") {
+    	return headerName, false
+    }
+    if strings.EqualFold(headerName, "keep-alive") {
+    	return headerName, false
+    }
+    return headerName, true
 }
 
-// setzt die api-base-url für das backend
+// sets header api-base-url
 func addBaseUrl (ctx context.Context, request *http.Request) metadata.MD {
 	return metadata.New(map[string]string{
 		"api-base-url": "//" + request.Host,
@@ -88,7 +99,7 @@ func Run(grpcBackendAddr string, transcoderAddr string) error {
 		}))
 
 	opts := []grpc.DialOption{
-    		grpc.WithInsecure(),
+    		grpc.WithTransportCredentials(insecure.NewCredentials()),
     		grpc.WithUnaryInterceptor(
     			grpc_opentracing.UnaryClientInterceptor(
     				grpc_opentracing.WithTracer(opentracing.GlobalTracer()),
