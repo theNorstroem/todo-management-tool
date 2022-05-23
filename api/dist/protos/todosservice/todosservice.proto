@@ -18,10 +18,11 @@ service TodosService {
   // Adds a new ToDos item to the ToDos list
   rpc CreateTodo (CreateTodoRequest) returns (todos.ItemEntity){
 	//Create: POST /todos todos.Item, todos.ItemEntity #Adds a new ToDos item to the ToDos list
-	option (google.api.http) = {
-		post: "/todos"
-		body: "body"
-	};
+    option (google.api.http) = {
+        post: "/todos"
+        body: "body"
+    };
+
   }
 
 }
