@@ -16,9 +16,19 @@ We recommend 2+ years of programming experience in JavaScript / HTML / CSS and a
 https://hub.docker.com/r/thenorstroem/furo-bec
 
 ```shell script
-docker pull thenorstroem/furo-bec:v1.28.5
+docker pull thenorstroem/furo-bec:v1.35.1
 ```
 
-Example Usage: docker run -it --rm -v $(pwd):$pwd/specs thenorstroem/furo-bec:v1.28.5
+Example Usage: docker run -it --rm -v $(pwd):$pwd/specs -v ~/.ssh:/root/.ssh thenorstroem/furo-bec:v1.35.1
+
+`furo install` runs the dependency installer
+`furo` runs the standard flow from the .furo file
+`furo run build` runs the build flow from the .furo file
+
+```shell script
+フロー BEC # furo install
+フロー BEC # furo 
+フロー BEC # furo run build
+```
 
 Commands: https://furo.pro/docs/commands/
